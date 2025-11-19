@@ -11,7 +11,7 @@
         <!--Iniciar sesión-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TaskFlow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TaskFlowViewController" customModule="TaskFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -272,6 +272,44 @@
             </objects>
             <point key="canvasLocation" x="1746" y="-89"/>
         </scene>
+        <!--Mis tareas-->
+        <scene sceneID="5Fl-3I-m0J">
+            <objects>
+                <viewController id="M12-Z7-ECc" customClass="TaskFlowViewController" customModule="TaskFlow" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XLW-B9-Pcf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="EkN-Nz-Bei"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mis tareas" id="HAq-Hy-0x5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qmd-v8-Xxr">
+                            <connections>
+                                <segue destination="c0t-Xk-6Bx" kind="show" id="8GH-8R-ChA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Bd-xV-AVr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4277" y="-164"/>
+        </scene>
+        <!--Añadir tarea-->
+        <scene sceneID="qH1-bt-NoX">
+            <objects>
+                <viewController id="c0t-Xk-6Bx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lq8-OI-bSk">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="jU4-1s-nxU"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Añadir tarea" id="ccY-Dz-liT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJT-fU-Abg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5164" y="-357"/>
+        </scene>
         <!--Recover password-->
         <scene sceneID="jeb-g7-Ekd">
             <objects>
@@ -411,6 +449,7 @@
                                 <rect key="frame" x="16" y="570" width="361" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cqQ-Li-SSm" secondAttribute="height" multiplier="361:50" id="e25-08-J9k"/>
+                                    <constraint firstAttribute="width" secondItem="cqQ-Li-SSm" secondAttribute="height" multiplier="361:50" id="fU6-xU-ej0"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Enviar código"/>
@@ -431,7 +470,6 @@
                             <constraint firstItem="URP-bB-tJv" firstAttribute="leading" secondItem="AAk-Ci-0ge" secondAttribute="leading" constant="16" id="OTx-KX-lA7"/>
                             <constraint firstItem="SbV-UA-y45" firstAttribute="trailing" secondItem="URP-bB-tJv" secondAttribute="trailing" constant="16" id="VBC-N4-RQ6"/>
                             <constraint firstItem="qIy-nU-zle" firstAttribute="leading" secondItem="AAk-Ci-0ge" secondAttribute="leading" constant="16" id="crk-qf-Pli"/>
-                            <constraint firstItem="cqQ-Li-SSm" firstAttribute="width" secondItem="cqQ-Li-SSm" secondAttribute="height" multiplier="361:50" id="fU6-xU-ej0"/>
                             <constraint firstItem="SbV-UA-y45" firstAttribute="trailing" secondItem="qIy-nU-zle" secondAttribute="trailing" constant="16" id="gsr-vW-NuX"/>
                             <constraint firstItem="2WE-4I-1tK" firstAttribute="leading" secondItem="SbV-UA-y45" secondAttribute="leading" constant="16" id="lNx-Ph-23P"/>
                             <constraint firstItem="2WE-4I-1tK" firstAttribute="top" secondItem="cqQ-Li-SSm" secondAttribute="bottom" constant="28" id="lrE-Ju-L34"/>
@@ -449,7 +487,7 @@
         <!--Navigation Controller-->
         <scene sceneID="rnu-Tk-Tx0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mxm-w5-1im" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="mxm-w5-1im" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NLx-5Q-dTD">
                         <rect key="frame" x="0.0" y="118" width="393" height="54"/>
@@ -463,6 +501,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYq-fX-Ag3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="130.98591549295776"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lvR-LX-s2Y">
+            <objects>
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="zZX-ca-Qva" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sTW-l5-AKc">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="M12-Z7-ECc" kind="relationship" relationship="rootViewController" id="EPU-nN-kwP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MQ2-HB-dX4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3350" y="-164"/>
         </scene>
     </scenes>
     <resources>

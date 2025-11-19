@@ -33,7 +33,7 @@
 		875372E42ECBF79600F206F5 /* Exceptions for "TaskFlow" folder in "TaskFlow" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = 875372B82ECBF79400F206F5 /* TaskFlow */;
 		};
@@ -291,7 +291,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YHW3Y726NZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TaskFlow/Info.plist;
+				INFOPLIST_FILE = TaskFlow/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -323,7 +323,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YHW3Y726NZ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TaskFlow/Info.plist;
+				INFOPLIST_FILE = TaskFlow/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

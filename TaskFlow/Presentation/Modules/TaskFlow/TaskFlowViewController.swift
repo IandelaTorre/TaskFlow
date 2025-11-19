@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TaskFlowViewController: UIViewController {
+    
+    var viewModel: TaskFlowViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
