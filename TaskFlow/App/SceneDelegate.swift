@@ -17,11 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         let diContainer = DIContainer()
-        let coordinator = AppCoordinator(window: window, diContainer: diContainer)
-        coordinator.start()
+        let appCoordinator = AppCoordinator(window: window, diContainer: diContainer)
 
         self.window = window
-        self.appCoordinator = coordinator
+        self.appCoordinator = appCoordinator
+
+        Task { @MainActor in
+            appCoordinator.start()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

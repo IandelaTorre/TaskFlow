@@ -10,6 +10,9 @@ import UIKit
 final class AppCoordinator {
     private let window: UIWindow
     private let diContainer: DIContainer
+    
+    private var homeCoordinator: HomeCoordinator?
+    private var loginCoordinator: LoginCoordinator?
 
     init(window: UIWindow, diContainer: DIContainer) {
         self.window = window
@@ -17,27 +20,23 @@ final class AppCoordinator {
     }
 
     @MainActor func start() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let userLogged = true
-        let rootController: UINavigationController
-        if userLogged {
-            guard let homeNav = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as? UINavigationController else {
-                    fatalError("No se encontró HomeNavigationController en el Storyboard")
-                }
-                        
-            if let homeVC = homeNav.viewControllers.first as? TaskFlowViewController {
-                    homeVC.viewModel = diContainer.makeTaskFlowViewModel()
-                }
-                        
-            rootController = homeNav
+        let loggedIn = false
+        if loggedIn {
+            showHome()
         } else {
-            guard let loginNav = storyboard.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController else {
-                    fatalError("No se encontró LoginNavigationController en el Storyboard")
-            }
-            rootController = loginNav
+            showLogin()
         }
-        
-        window.rootViewController = rootController
-        window.makeKeyAndVisible()
+    }
+    
+    @MainActor private func showHome() {
+        let homeCoordinator = HomeCoordinator(window: window, diContainer: diContainer)
+        self.homeCoordinator = homeCoordinator
+        homeCoordinator.start()
+    }
+
+    @MainActor private func showLogin() {
+        let loginCoordinator = LoginCoordinator(window: window, diContainer: diContainer)
+        self.loginCoordinator = loginCoordinator
+        loginCoordinator.start()
     }
 }
