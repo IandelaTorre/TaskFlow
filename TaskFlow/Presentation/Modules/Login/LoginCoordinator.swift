@@ -10,6 +10,8 @@ import UIKit
 final class LoginCoordinator {
     private let window: UIWindow
     private let diContainer: DIContainer
+    
+    var onLoginSuccess: (() -> Void)?
 
     init(window: UIWindow, diContainer: DIContainer) {
         self.window = window
@@ -28,6 +30,11 @@ final class LoginCoordinator {
         }
 
         loginVC.viewModel = diContainer.login.makeLoginViewModel()
+        
+        loginVC.onLoginSuccess = { [weak self] in
+            CoreDataHelper.shared.setIsLoggedIn(true)
+            self?.onLoginSuccess?()
+        }
 
         window.rootViewController = navController
         window.makeKeyAndVisible()

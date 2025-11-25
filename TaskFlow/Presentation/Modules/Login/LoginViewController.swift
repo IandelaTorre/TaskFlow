@@ -10,6 +10,7 @@ import UIKit
 class LoginViewController: UIViewController {
     
     var viewModel: LoginViewModel!
+    var onLoginSuccess: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,5 +18,8 @@ class LoginViewController: UIViewController {
     }
 
 
+    @IBAction func LoginButtonAction(_ sender: Any) {
+        onLoginSuccess?()
+    }
 }
 
