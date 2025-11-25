@@ -20,8 +20,7 @@ final class AppCoordinator {
     }
 
     @MainActor func start() {
-        let loggedIn = false
-        if loggedIn {
+        if CoreDataHelper.shared.getIsLoggedIn() {
             showHome()
         } else {
             showLogin()
@@ -31,12 +30,20 @@ final class AppCoordinator {
     @MainActor private func showHome() {
         let homeCoordinator = HomeCoordinator(window: window, diContainer: diContainer)
         self.homeCoordinator = homeCoordinator
+        homeCoordinator.onLogout = { [weak self] in
+            CoreDataHelper.shared.setIsLoggedIn(false)
+            self?.showLogin()
+        }
         homeCoordinator.start()
     }
 
     @MainActor private func showLogin() {
         let loginCoordinator = LoginCoordinator(window: window, diContainer: diContainer)
         self.loginCoordinator = loginCoordinator
+        loginCoordinator.onLoginSuccess = { [weak self] in
+            self?.showHome()
+        }
+        
         loginCoordinator.start()
     }
 }

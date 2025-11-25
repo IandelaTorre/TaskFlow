@@ -10,6 +10,8 @@ import UIKit
 final class HomeCoordinator {
     private let window: UIWindow
     private let diContainer: DIContainer
+    
+    var onLogout: (() -> Void)?
 
     init(window: UIWindow, diContainer: DIContainer) {
         self.window = window
@@ -28,6 +30,9 @@ final class HomeCoordinator {
         }
 
         homeVC.viewModel = diContainer.home.makeHomeViewModel()
+        homeVC.onLogout = { [weak self] in
+            self?.onLogout?()
+        }
 
         window.rootViewController = navController
         window.makeKeyAndVisible()

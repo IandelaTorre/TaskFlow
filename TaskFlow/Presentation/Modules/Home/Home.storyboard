@@ -15,8 +15,22 @@
                     <view key="view" contentMode="scaleToFill" id="qWH-vX-cEJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMF-zU-sBV">
+                                <rect key="frame" x="133.66666666666666" y="408.66666666666669" width="125.99999999999997" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Cerrar sesión"/>
+                                <connections>
+                                    <action selector="LogoutButtonAction:" destination="S3W-P8-LPz" eventType="touchUpInside" id="wkv-Hv-FsP"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Hao-aV-bOj"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dMF-zU-sBV" firstAttribute="centerX" secondItem="qWH-vX-cEJ" secondAttribute="centerX" id="7sX-Le-T5r"/>
+                            <constraint firstItem="dMF-zU-sBV" firstAttribute="centerY" secondItem="qWH-vX-cEJ" secondAttribute="centerY" id="sIT-iH-zFb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Mis tareas" id="cXP-BL-oqk">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Tap-0H-2VE">
@@ -33,7 +47,7 @@
         <!--Añadir tarea-->
         <scene sceneID="iox-tl-DgQ">
             <objects>
-                <viewController id="93F-Ke-0nq" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddTaskView" id="93F-Ke-0nq" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h0r-sM-Dhv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
