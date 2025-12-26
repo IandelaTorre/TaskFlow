@@ -31,7 +31,7 @@ final class AppCoordinator {
         let homeCoordinator = HomeCoordinator(window: window, diContainer: diContainer)
         self.homeCoordinator = homeCoordinator
         homeCoordinator.onLogout = { [weak self] in
-            CoreDataHelper.shared.setIsLoggedIn(false)
+            CoreDataHelper.shared.clearSession()
             self?.showLogin()
         }
         homeCoordinator.start()
