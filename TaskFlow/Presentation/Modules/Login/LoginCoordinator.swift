@@ -35,9 +35,22 @@ final class LoginCoordinator {
             CoreDataHelper.shared.setIsLoggedIn(true)
             self?.onLoginSuccess?()
         }
+        loginVC.onSignupTapped = { [weak self, weak navController] in
+            guard let self, let navController else { return }
+            self.showSignup(in: navController)
+        }
 
         window.rootViewController = navController
         window.makeKeyAndVisible()
+    }
+    
+    @MainActor private func showSignup(in navController: UINavigationController) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let signupVC = storyboard.instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController else {
+            fatalError("No se encontró SignupViewController")
+        }
+        signupVC.viewModel = diContainer.login.makeLoginViewModel()
+        navController.pushViewController(signupVC, animated: true)
     }
 }
 

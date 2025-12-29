@@ -16,7 +16,7 @@ struct UserEntity: Equatable {
     let createdAt: Date
     let updatedAt: Date
     let enabled: Bool
-    let rolId: Int
+    let roleId: Int
     let uuid: String
     let userCode: String
     let role: UserRole?

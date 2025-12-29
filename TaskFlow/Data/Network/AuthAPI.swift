@@ -24,4 +24,16 @@ final class AuthAPI {
         print("AuthAPI (res value): \(res.value)")
         return (res.value, dict)
     }
+    
+    func signup(name: String, lastName: String, email: String, password: String) async throws -> SignupResponseDTO {
+        let dto = SignupRequestDTO(name: name, lastName: lastName, email: email, password: password)
+        let res: (value: SignupResponseDTO, headers: Alamofire.HTTPHeaders) = try await client.post("/auth/signup", body: dto)
+        return res.value
+    }
+    
+    func recoveryPassword(email: String, recoveryCode: String, newPassword: String) async throws -> RecoveryPasswordResponseDTO {
+        let dto = RecoveryPasswordRequestDTO(email: email, recoveryCode: recoveryCode, newPassword: newPassword)
+        let res: (value: RecoveryPasswordResponseDTO, headers: Alamofire.HTTPHeaders) = try await client.post("/auth/recovery-password", body: dto)
+        return res.value
+    }
 }

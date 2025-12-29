@@ -20,6 +20,6 @@ final class LoginContainer {
     }
     
     @MainActor func makeLoginViewModel() -> LoginViewModel {
-        return LoginViewModel(loginUseCase: makeLoginUseCase())
+        return LoginViewModel(loginUseCase: makeLoginUseCase(), signupUseCase: SignupUseCase(authRepo: di.authRepository), recoveryPassUseCase: RecoveryPasswordUseCase(authRepo: di.authRepository))
     }
 }

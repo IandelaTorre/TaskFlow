@@ -48,15 +48,18 @@ final class APIClient {
                             continuation.resume(throwing: APIError.decoding(error))
                         }
                     } else {
-                        do {
-                            let problem = try decoder.decode(ProblemDetailsDTO.self, from: data)
-                            print("APIError (problem): \(problem)")
-                            continuation.resume(throwing: APIError.http(status: code, problem: problem))
-                        } catch {
-                            print("APIClient (problem decode error): \(error)")
-                            continuation.resume(throwing: APIError.http(status: code, problem: nil))
+                        Task { @MainActor in
+                            do {
+                                let problem = try decoder.decode(ProblemDetailsDTO.self, from: data)
+                                print("APIError (problem): \(problem)")
+                                continuation.resume(throwing: APIError.http(status: code, problem: problem))
+                            } catch {
+                                print("APIClient (problem decode error): \(error)")
+                                continuation.resume(throwing: APIError.http(status: code, problem: nil))
+                            }
                         }
                     }
+
 
                     
                 case .failure(let afError):
@@ -73,3 +76,4 @@ final class APIClient {
         return decoder
     }
 }
+
