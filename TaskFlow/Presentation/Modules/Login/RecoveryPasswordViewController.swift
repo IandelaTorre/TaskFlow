@@ -1,23 +1,21 @@
 //
-//  SignupViewController.swift
+//  RecoveryPasswordViewController.swift
 //  TaskFlow
 //
-//  Created by Ian Axel Perez de la Torre on 28/12/25.
+//  Created by Ian Axel Perez de la Torre on 31/12/25.
 //
 
 import UIKit
 import Combine
 
-class SignupViewController: UIViewController {
+class RecoveryPasswordViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessageLabel: UILabel!
-    
-    //SignupView
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordLogupTextField: UITextField!
+    @IBOutlet weak var recoveryCodeTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var reEnterPasswordTextField: UITextField!
     
     var viewModel: LoginViewModel!
     private var cancellables = Set<AnyCancellable>()
@@ -26,6 +24,7 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        // Do any additional setup after loading the view.
     }
     
     private func bind() {
@@ -51,18 +50,12 @@ class SignupViewController: UIViewController {
                 .store(in: &cancellables)
         }
     
-
-    @IBAction func SignupButtonAction(_ sender: Any) {
-        if nameTextField?.text == "" || lastNameTextField?.text == "" || emailTextField?.text == "" || passwordLogupTextField?.text == "" {
-            errorMessageLabel?.text = "All fields are required. "
-            return
-        }
-        print("\(nameTextField.text ?? "falto name") \(lastNameTextField.text ?? "falto ap") \(emailTextField.text ?? "falto email") \(passwordLogupTextField.text ?? "falto pass")")
+    
+    @IBAction func ChangePasswordButtonAction(_ sender: Any) {
         Task { @MainActor in
-            let signup = await viewModel.signup(name: nameTextField.text ?? "", lastName: lastNameTextField?.text ?? "", email: emailTextField?.text ?? "", password: passwordLogupTextField?.text ?? "")
-            print("SignupViewController (signupStatus): \(signup)")
-            if signup { print("Usuario creado con éxito! ") }
+            let recovery = await viewModel.recoveryPassword(email: emailTextField.text ?? "", recoveryCode: recoveryCodeTextField.text ?? "", newPassword: passwordTextField.text ?? "")
+            if recovery { print("Se recupero correctamente. 😄")}
         }
     }
-
+    
 }

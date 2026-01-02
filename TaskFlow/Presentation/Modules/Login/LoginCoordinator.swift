@@ -35,9 +35,15 @@ final class LoginCoordinator {
             CoreDataHelper.shared.setIsLoggedIn(true)
             self?.onLoginSuccess?()
         }
+        
         loginVC.onSignupTapped = { [weak self, weak navController] in
             guard let self, let navController else { return }
             self.showSignup(in: navController)
+        }
+        
+        loginVC.onRecoveryTapped = { [weak self, weak navController] in
+            guard let self, let navController else { return }
+            self.showRecoveryPass(in: navController)
         }
 
         window.rootViewController = navController
@@ -51,6 +57,15 @@ final class LoginCoordinator {
         }
         signupVC.viewModel = diContainer.login.makeLoginViewModel()
         navController.pushViewController(signupVC, animated: true)
+    }
+    
+    @MainActor private func showRecoveryPass(in navController: UINavigationController) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let recoveryVC = storyboard.instantiateViewController(withIdentifier: "RecoveryPasswordViewController") as? RecoveryPasswordViewController else {
+            fatalError("No se encontró RecoveryPasswordViewController")
+        }
+        recoveryVC.viewModel = diContainer.login.makeLoginViewModel()
+        navController.pushViewController(recoveryVC, animated: true)
     }
 }
 

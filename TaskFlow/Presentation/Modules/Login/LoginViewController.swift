@@ -17,15 +17,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField?
     @IBOutlet weak var passwordTextField: UITextField?
     
-    //RecoveryPasswordView
-    @IBOutlet weak var recoveryCodeTextField: UITextField?
-    @IBOutlet weak var newPasswordTextField: UITextField?
-    @IBOutlet weak var confirmNewPasswordTextField: UITextField?
-    
-    
     var viewModel: LoginViewModel!
     var onLoginSuccess: (() -> Void)?
     var onSignupTapped: (() -> Void)?
+    var onRecoveryTapped: (() -> Void)?
     
     private var cancellables = Set<AnyCancellable>()
 
@@ -71,6 +66,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func RecoveryPasswordButtonAction(_ sender: Any) {
+        onRecoveryTapped?()
         
     }
     
