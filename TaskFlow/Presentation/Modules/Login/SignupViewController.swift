@@ -19,6 +19,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordLogupTextField: UITextField!
     
+    var onSuccess: (() -> Void)?
+    
     var viewModel: LoginViewModel!
     private var cancellables = Set<AnyCancellable>()
     
@@ -61,7 +63,12 @@ class SignupViewController: UIViewController {
         Task { @MainActor in
             let signup = await viewModel.signup(name: nameTextField.text ?? "", lastName: lastNameTextField?.text ?? "", email: emailTextField?.text ?? "", password: passwordLogupTextField?.text ?? "")
             print("SignupViewController (signupStatus): \(signup)")
-            if signup { print("Usuario creado con éxito! ") }
+            if signup {
+                self.showToast(message: "¡Cuenta creada! Por favor inicia sesión", seconds: 3.0)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.onSuccess?()
+                }
+            }
         }
     }
 

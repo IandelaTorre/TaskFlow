@@ -55,6 +55,9 @@ final class LoginCoordinator {
         guard let signupVC = storyboard.instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController else {
             fatalError("No se encontró SignupViewController")
         }
+        signupVC.onSuccess = { [weak self] in
+            self?.start()
+        }
         signupVC.viewModel = diContainer.login.makeLoginViewModel()
         navController.pushViewController(signupVC, animated: true)
     }
@@ -63,6 +66,9 @@ final class LoginCoordinator {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let recoveryVC = storyboard.instantiateViewController(withIdentifier: "RecoveryPasswordViewController") as? RecoveryPasswordViewController else {
             fatalError("No se encontró RecoveryPasswordViewController")
+        }
+        recoveryVC.onSuccess = { [weak self] in
+            self?.start()
         }
         recoveryVC.viewModel = diContainer.login.makeLoginViewModel()
         navController.pushViewController(recoveryVC, animated: true)

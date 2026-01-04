@@ -8,6 +8,10 @@
 import Foundation
 
 struct RecoveryPasswordResponseDTO: Decodable {
+    let data: DataResponseDTO
+}
+
+struct DataResponseDTO: Decodable {
     let message: String
     let user: UserRPDTO
 }

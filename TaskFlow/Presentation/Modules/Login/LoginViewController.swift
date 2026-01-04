@@ -61,7 +61,13 @@ class LoginViewController: UIViewController {
         Task { @MainActor in
             let login = await viewModel.login(username: usernameTextField?.text ?? "", password: passwordTextField?.text ?? "")
             print("ViewController (loginStatus): \(login)")
-            if login { onLoginSuccess?() }
+            if login {
+                view.endEditing(true)
+                self.showToast(message: "Login exitoso, felicidades!", seconds: 3.0)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.onLoginSuccess?()
+                }
+            }
         }
     }
     

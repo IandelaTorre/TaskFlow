@@ -41,8 +41,8 @@ final class AuthRepositoryImpl: AuthRepository {
     func recoveryPassword(email: String, recoveryCode: String, newPassword: String) async throws -> RecoveryPassword {
         let res = try await api.recoveryPassword(email: email, recoveryCode: recoveryCode, newPassword: newPassword)
         
-        let userData = UserData(uuid: res.user.uuid, email: res.user.email)
-        let response = RecoveryPassword(message: res.message, user: userData)
+        let userData = UserData(uuid: res.data.user.uuid, email: res.data.user.email)
+        let response = RecoveryPassword(message: res.data.message, user: userData)
         
         return response
     }

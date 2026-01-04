@@ -453,6 +453,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ingresa código" id="fGk-UQ-h1v"/>
                     <connections>
+                        <outlet property="changePasswordButton" destination="cqQ-Li-SSm" id="b60-wT-wcx"/>
                         <outlet property="emailTextField" destination="Mw7-Ci-pXC" id="YqE-5T-Cl4"/>
                         <outlet property="errorMessageLabel" destination="YxM-5y-GSy" id="vet-aT-vhw"/>
                         <outlet property="loadingIndicator" destination="PhS-Yd-55G" id="7XN-WD-XyQ"/>
