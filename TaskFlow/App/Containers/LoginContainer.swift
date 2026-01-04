@@ -8,7 +8,18 @@
 import Foundation
 
 final class LoginContainer {
+    private unowned let di: DIContainer
+    
+    init(di: DIContainer) {
+        self.di = di
+    }
+    
+    func makeLoginUseCase() -> LoginUseCase {
+        let saveSession = SaveLoginSessionUseCase(localRepository: di.localRepository)
+        return LoginUseCase(authRepo: di.authRepository, saveLoginSession: saveSession)
+    }
+    
     @MainActor func makeLoginViewModel() -> LoginViewModel {
-        return LoginViewModel()
+        return LoginViewModel(loginUseCase: makeLoginUseCase(), signupUseCase: SignupUseCase(authRepo: di.authRepository), recoveryPassUseCase: RecoveryPasswordUseCase(authRepo: di.authRepository))
     }
 }
