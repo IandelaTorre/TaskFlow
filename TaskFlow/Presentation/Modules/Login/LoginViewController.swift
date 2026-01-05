@@ -8,14 +8,14 @@
 import UIKit
 import Combine
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //LoginView
-    @IBOutlet weak var loginButton: UIButton?
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView?
-    @IBOutlet weak var errorMessageLabel: UILabel?
-    @IBOutlet weak var usernameTextField: UITextField?
-    @IBOutlet weak var passwordTextField: UITextField?
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     var viewModel: LoginViewModel!
     var onLoginSuccess: (() -> Void)?
@@ -27,12 +27,12 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     private func bind() {
-        print("DEBUG viewModel is nil? ->", viewModel == nil)
-            print("DEBUG loadingIndicator is nil? ->", loadingIndicator == nil)
-        loadingIndicator?.hidesWhenStopped = true
+        loadingIndicator.hidesWhenStopped = true
         
         viewModel.$isLoading
             .receive(on: RunLoop.main)
@@ -52,14 +52,13 @@ class LoginViewController: UIViewController {
             .store(in: &cancellables)
     }
 
-
     @IBAction func LoginButtonAction(_ sender: Any) {
-        if usernameTextField?.text == "" && passwordTextField?.text == "" {
-            errorMessageLabel?.text = "Please set a password or username"
+        if usernameTextField.text == "" && passwordTextField.text == "" {
+            errorMessageLabel.text = "Please set a password or username"
             return
         }
         Task { @MainActor in
-            let login = await viewModel.login(username: usernameTextField?.text ?? "", password: passwordTextField?.text ?? "")
+            let login = await viewModel.login(username: usernameTextField.text ?? "", password: passwordTextField.text ?? "")
             print("ViewController (loginStatus): \(login)")
             if login {
                 view.endEditing(true)
@@ -78,6 +77,19 @@ class LoginViewController: UIViewController {
     
     @IBAction func GoToSignupAction(_ sender: Any) {
         onSignupTapped?()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case usernameTextField:
+            passwordTextField?.becomeFirstResponder()
+        case passwordTextField:
+            passwordTextField?.resignFirstResponder()
+            LoginButtonAction(self)
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
     }
         
 }

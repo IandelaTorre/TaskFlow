@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class RecoveryPasswordViewController: UIViewController {
+class RecoveryPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessageLabel: UILabel!
@@ -27,10 +27,10 @@ class RecoveryPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-        // Do any additional setup after loading the view.
+        emailTextField.delegate = self
+        recoveryCodeTextField.delegate = self
+        passwordTextField.delegate = self
+        reEnterPasswordTextField.delegate = self
     }
     
     private func bind() {
@@ -92,11 +92,7 @@ class RecoveryPasswordViewController: UIViewController {
             }
             .store(in: &cancellables)
     }
-    
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
+        
     @IBAction func ChangePasswordButtonAction(_ sender: Any) {
         Task { @MainActor in
             let recovery = await viewModel.recoveryPassword(email: emailTextField.text ?? "", recoveryCode: recoveryCodeTextField.text ?? "", newPassword: passwordTextField.text ?? "")
@@ -107,6 +103,23 @@ class RecoveryPasswordViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case emailTextField:
+            recoveryCodeTextField.becomeFirstResponder()
+        case recoveryCodeTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            reEnterPasswordTextField.becomeFirstResponder()
+        case reEnterPasswordTextField:
+            reEnterPasswordTextField.resignFirstResponder()
+            ChangePasswordButtonAction(self)
+        default:
+            textField.resignFirstResponder()
+        }
+        return true 
     }
     
 }

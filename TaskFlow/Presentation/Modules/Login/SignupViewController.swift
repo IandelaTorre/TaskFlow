@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessageLabel: UILabel!
@@ -28,31 +28,32 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        nameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordLogupTextField.delegate = self
     }
     
     private func bind() {
-            print("DEBUG viewModel (SignupVC) is nil? ->", viewModel == nil)
-                print("DEBUG loadingIndicator (SignupVC) is nil? ->", loadingIndicator == nil)
-            loadingIndicator?.hidesWhenStopped = true
-            
-            viewModel.$isLoading
-                .receive(on: RunLoop.main)
-                .sink { [weak self] loading in
-                    guard let indicator = self?.loadingIndicator else { return }
-                    if loading { indicator.startAnimating() }
-                    else { indicator.stopAnimating() }
-                }
-                .store(in: &cancellables)
-            
-            viewModel.$errorMessage
-                .receive(on: RunLoop.main)
-                .sink { [weak self] error in
-                    print("SignupViewController (errorMessage): \(error ?? "")")
-                    if error != nil { self?.errorMessageLabel?.text = error }
-                }
-                .store(in: &cancellables)
-        }
-    
+        loadingIndicator?.hidesWhenStopped = true
+        
+        viewModel.$isLoading
+            .receive(on: RunLoop.main)
+            .sink { [weak self] loading in
+                guard let indicator = self?.loadingIndicator else { return }
+                if loading { indicator.startAnimating() }
+                else { indicator.stopAnimating() }
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$errorMessage
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                print("SignupViewController (errorMessage): \(error ?? "")")
+                if error != nil { self?.errorMessageLabel?.text = error }
+            }
+            .store(in: &cancellables)
+    }
 
     @IBAction func SignupButtonAction(_ sender: Any) {
         if nameTextField?.text == "" || lastNameTextField?.text == "" || emailTextField?.text == "" || passwordLogupTextField?.text == "" {
@@ -70,6 +71,23 @@ class SignupViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case nameTextField:
+            lastNameTextField.becomeFirstResponder()
+        case lastNameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            passwordLogupTextField.becomeFirstResponder()
+        case passwordLogupTextField:
+            passwordLogupTextField.resignFirstResponder()
+            SignupButtonAction(self)
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
     }
 
 }
