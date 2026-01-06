@@ -37,5 +37,9 @@ final class HomeCoordinator {
         window.rootViewController = navController
         window.makeKeyAndVisible()
     }
+    
+    @MainActor func showAddTask() {
+        
+    }
 }
 
