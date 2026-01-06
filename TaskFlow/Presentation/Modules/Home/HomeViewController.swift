@@ -11,6 +11,8 @@ class HomeViewController: UIViewController {
     
     var viewModel: HomeViewModel!
     var onLogout: (() -> Void)?
+    var onTapAddTask: (() -> Void)?
+    var onTapDetailTask: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
