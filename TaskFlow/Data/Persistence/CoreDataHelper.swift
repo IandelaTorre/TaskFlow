@@ -17,7 +17,7 @@ final class CoreDataHelper {
         return appDelegate.persistentContainer.viewContext
     }
     
-    private func fetchFirstUser() -> User? {
+    func fetchFirstUser() -> User? {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         return (try? context.fetch(fetchRequest))?.first
     }
