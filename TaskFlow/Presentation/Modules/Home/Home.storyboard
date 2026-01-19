@@ -477,6 +477,17 @@
                             <constraint firstItem="2Gk-e2-Jpi" firstAttribute="top" secondItem="9af-3X-7DP" secondAttribute="bottom" constant="32" id="y8y-Ws-x3B"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameAssignedByLabel" destination="MkW-Xm-nVx" id="OVJ-uV-aai"/>
+                        <outlet property="nameAssignedToLabel" destination="D1x-RH-LSR" id="5a8-El-2bK"/>
+                        <outlet property="statusTaskLabel" destination="plO-zy-ngJ" id="KiK-Je-L6L"/>
+                        <outlet property="taskBadgeLabel" destination="GHj-BO-6E4" id="WcB-lF-ePK"/>
+                        <outlet property="taskDescriptionLabel" destination="7uX-OI-8e0" id="04O-Ci-3Xq"/>
+                        <outlet property="taskTitleLabel" destination="h2K-yt-oHq" id="WgM-hP-Fr1"/>
+                        <outlet property="taskbadgeContainerView" destination="X0X-dU-QLh" id="U5h-gJ-vdT"/>
+                        <outlet property="userCodeAssignedByLabel" destination="iG4-8t-ioY" id="DkL-iC-3af"/>
+                        <outlet property="userCodeAssignedToLabel" destination="Fj7-SZ-Glb" id="HOD-DP-9BG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vh2-Rg-foc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

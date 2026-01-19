@@ -33,10 +33,27 @@ final class HomeCoordinator {
         homeVC.onLogout = { [weak self] in
             self?.onLogout?()
         }
+        homeVC.onTapDetailTask = { [weak self] task in
+            self?.showDetailTask(in: navController, task: task)
+        }
 
         window.rootViewController = navController
         window.makeKeyAndVisible()
     }
+    
+    @MainActor private func showDetailTask(in navController: UINavigationController, task userTask: UserTask) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        guard let detTaskVC = storyboard.instantiateViewController(withIdentifier: "DetailTaskViewController") as? DetailTaskViewController else {
+            fatalError("No se encontró DetailTaskViewController")
+        }
+        /*detTaskVC.onSuccess = { [weak self] in
+            self?.start()
+        }*/
+        detTaskVC.viewModel = diContainer.home.makeHomeViewModel()
+        detTaskVC.task = userTask
+        navController.pushViewController(detTaskVC, animated: true)
+    }
+
     
     @MainActor func showAddTask() {
         
