@@ -40,11 +40,11 @@ class HomeViewController: UIViewController {
         tasksCollectionView.dataSource = self
         
         
-         var config = UICollectionLayoutListConfiguration(appearance: .plain)
-                 config.showsSeparators = true
-                 config.backgroundColor = .systemBackground
-                 let layout = UICollectionViewCompositionalLayout.list(using: config)
-                 tasksCollectionView.collectionViewLayout = layout
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        config.showsSeparators = true
+        config.backgroundColor = .systemBackground
+        let layout = UICollectionViewCompositionalLayout.list(using: config)
+        tasksCollectionView.collectionViewLayout = layout
         
         
     }
@@ -83,6 +83,11 @@ class HomeViewController: UIViewController {
     @IBAction func LogoutButtonAction(_ sender: Any) {
         onLogout?()
     }
+    
+    @IBAction func AddTaskButtonAction(_ sender: Any) {
+        onTapAddTask?()
+    }
+    
 }
 
 
@@ -99,7 +104,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: false)
         guard let selectedTask = viewModel.tasks?[indexPath.item] else { return }
         onTapDetailTask?(selectedTask)
     }

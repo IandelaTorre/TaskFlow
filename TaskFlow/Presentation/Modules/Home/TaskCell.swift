@@ -19,6 +19,8 @@ class TaskCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupStyle()
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .clear
     }
     
     private func setupStyle() {
@@ -49,6 +51,18 @@ class TaskCell: UICollectionViewCell {
             statusImageView.tintColor = .systemGray
             
             styleBadge(color: .systemGray5, textColor: .systemGray)
+        }
+    }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            let transform: CGAffineTransform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
+            let alpha: CGFloat = isHighlighted ? 0.7 : 1.0
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
+                self.transform = transform
+                self.alpha = alpha
+            }, completion: nil)
         }
     }
     

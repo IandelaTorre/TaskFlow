@@ -8,6 +8,8 @@
 import UIKit
 
 class AddTaskViewController: UIViewController {
+    
+    var viewModel: HomeViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

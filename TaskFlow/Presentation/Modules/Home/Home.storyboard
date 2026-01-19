@@ -175,7 +175,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Mis tareas" id="cXP-BL-oqk">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Tap-0H-2VE"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Tap-0H-2VE">
+                            <connections>
+                                <action selector="AddTaskButtonAction:" destination="S3W-P8-LPz" id="ayE-9t-f86"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="homeCodeLabel" destination="mPA-cR-XUI" id="0FN-mj-hSw"/>

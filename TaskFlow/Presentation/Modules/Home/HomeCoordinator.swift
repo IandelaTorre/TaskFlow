@@ -36,6 +36,10 @@ final class HomeCoordinator {
         homeVC.onTapDetailTask = { [weak self] task in
             self?.showDetailTask(in: navController, task: task)
         }
+        
+        homeVC.onTapAddTask = { [weak self] in
+            self?.showAddTask(in: navController)
+        }
 
         window.rootViewController = navController
         window.makeKeyAndVisible()
@@ -55,8 +59,17 @@ final class HomeCoordinator {
     }
 
     
-    @MainActor func showAddTask() {
-        
+    @MainActor private func showAddTask(in navController: UINavigationController) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        guard let addTaskVC = storyboard.instantiateViewController(withIdentifier: "AddTaskViewController") as? AddTaskViewController else {
+            fatalError("No se encontró AddTaskViewController")
+        }
+        /*detTaskVC.onSuccess = { [weak self] in
+            self?.start()
+        }*/
+        addTaskVC.viewModel = diContainer.home.makeHomeViewModel()
+        navController.pushViewController(addTaskVC, animated: true)
     }
+
 }
 
