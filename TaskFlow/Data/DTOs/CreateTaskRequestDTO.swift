@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+
+struct CreateTaskRequestDTO: Codable {
+    let title: String
+    let description: String
+    let statusId: Int
+    let assignedTo: UUID
+    let assignedBy: UUID
+}
