@@ -9,6 +9,7 @@ import Foundation
 
 final class SaveLoginSessionUseCase {
     private let localRepository: LocalRepository
+    
     init(localRepository: LocalRepository) {
         self.localRepository = localRepository
     }

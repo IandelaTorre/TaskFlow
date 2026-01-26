@@ -11,18 +11,23 @@ import Combine
 class HomeViewModel {
     private let createTaskUseCase: CreateTaskUseCase
     private let getTasksUseCase: GetTasksUseCase
+    private let getMyTasksUseCase: GetMyTasksUseCase
+    private let getTaskUseCase: GetTaskUseCase
     
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: String? = ""
     
     @Published var user: User? = nil
     @Published var tasks: [UserTask]? = nil
+    @Published var detailTask: UserTask? = nil
     
     private var cancellables: Set<AnyCancellable> = []
     
-    init(createTaskUseCase: CreateTaskUseCase, getTasksUseCase: GetTasksUseCase) {
+    init(createTaskUseCase: CreateTaskUseCase, getTasksUseCase: GetTasksUseCase, getMyTasksUseCase: GetMyTasksUseCase, getTaskUseCase: GetTaskUseCase) {
         self.createTaskUseCase = createTaskUseCase
         self.getTasksUseCase = getTasksUseCase
+        self.getMyTasksUseCase = getMyTasksUseCase
+        self.getTaskUseCase = getTaskUseCase
     }
     
     func createTask(title: String, description: String, statusId: Int, assignedTo: String, assignedBy: String) async -> Bool {
@@ -58,6 +63,35 @@ class HomeViewModel {
             } catch {
                 self.errorMessage = error.localizedDescription
             }
+        }
+    }
+    
+    func fetchMyTasks(userUuid: UUID) {
+        isLoading = true
+        defer { isLoading = false }
+        
+        Task {
+            do {
+                let fetchedTasks = try await getMyTasksUseCase.execute(userUuid: userUuid)
+                print(fetchedTasks)
+                self.tasks = fetchedTasks
+            } catch {
+                self.errorMessage = error.localizedDescription
+            }
+        }
+    }
+    
+    func fetchTask(taskId: Int) async -> Bool {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            let task = try await getTaskUseCase.execute(taskId: taskId)
+            self.detailTask = task
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
         }
     }
 }

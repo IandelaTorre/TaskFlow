@@ -29,7 +29,6 @@ class HomeViewController: UIViewController {
         setupCollectionView()
         bind()
         viewModel.loadUser()
-        viewModel.fetchTasks()
         
 
         // Do any additional setup after loading the view.
@@ -54,7 +53,11 @@ class HomeViewController: UIViewController {
         viewModel.$user
             .receive(on: RunLoop.main)
             .sink { [weak self] user in
-                self?.fillData(user: user)
+                if user != nil {
+                    self?.fillData(user: user)
+                    self?.viewModel.fetchMyTasks(userUuid: user?.userUuid ?? UUID())
+                }
+                
             }
             .store(in: &cancellables)
         
@@ -76,7 +79,7 @@ class HomeViewController: UIViewController {
     }
     
     private func fillData(user: User?) {
-        homeNameLabel.text = user?.name ?? "No name"
+        homeNameLabel.text = "\(user?.name ?? "No name") \(user?.lastName ?? "")"
         homeCodeLabel.text = "Tu código: \(user?.userCode ?? "ABC-123")"
     }
     
@@ -104,7 +107,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: false)
+        collectionView.deselectItem(at: indexPath, animated: true)
         guard let selectedTask = viewModel.tasks?[indexPath.item] else { return }
         onTapDetailTask?(selectedTask)
     }

@@ -35,6 +35,7 @@ final class TaskAPI {
                 parameters: queryParams
             ) */
         let res: (value: TasksResponseDTO, headers: Alamofire.HTTPHeaders) = try await client.get("/tasks")
+        print("TaskAPI: \(res.value)")
         
         var dict: [String: String] = [:]
         res.headers.forEach { dict[$0.name] = $0.value }
@@ -42,8 +43,8 @@ final class TaskAPI {
         return (res.value, dict)
     }
     
-    func getTask(id: Int) async throws -> (value: TasksResponseDTO, headers: [String: String]) {
-        let res: (value: TasksResponseDTO, headers: Alamofire.HTTPHeaders) = try await client.get("/tasks/\(id)")
+    func getTask(id: Int) async throws -> (value: TaskResponseDTO, headers: [String: String]) {
+        let res: (value: TaskResponseDTO, headers: Alamofire.HTTPHeaders) = try await client.get("/tasks/\(id)")
         
         var dict: [String: String] = [:]
         res.headers.forEach { dict[$0.name] = $0.value }
@@ -51,8 +52,17 @@ final class TaskAPI {
         return (res.value, dict)
     }
     
-    /*func getMyTasks(userUuid: UUID) async throws -> (value: TasksResponseDTO, headers: [String: String]) {
+    func getMyTasks(userUuid: UUID) async throws -> (value: TasksResponseDTO, headers: [String: String]) {
+        let path = "/tasks/user/" + userUuid.uuidString
+        let params: [String: String] = [
+            "include": "status,assignedBy,assignedTo"
+        ]
+        let res: (value: TasksResponseDTO, headers: Alamofire.HTTPHeaders) = try await client.get(path, parameters: params)
         
-    }*/
+        var dict: [String: String] = [:]
+        res.headers.forEach { dict[$0.name] = $0.value }
+        
+        return (res.value, dict)
+    }
     
 }

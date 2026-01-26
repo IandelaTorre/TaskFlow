@@ -9,7 +9,7 @@ import Foundation
 
 
 struct TaskStatusResponseDTO: Decodable {
-    let id: Int
+    let statusId: Int
     let code: String
     let name: String
     let description: String
