@@ -24,19 +24,19 @@ class DetailTaskViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillDetailData()
+        //fillDetailData()
         // Do any additional setup after loading the view.
     }
     
     private func fillDetailData() {
-        taskTitleLabel.text = task.title
+        /*taskTitleLabel.text = task.title
         statusTaskLabel.text = task.status.name
         taskBadgeLabel.text = task.status.name
         nameAssignedToLabel.text = ("\(task.assignedTo.name) \(task.assignedTo.lastName)")
         userCodeAssignedToLabel.text = ("ID: \(task.assignedTo.userCode)")
         nameAssignedByLabel.text = ("\(task.assignedBy.name) \(task.assignedBy.lastName)")
         userCodeAssignedByLabel.text = ("ID: \(task.assignedBy.userCode)")
-        taskDescriptionLabel.text = task.description
+        taskDescriptionLabel.text = task.description*/
         
     }
 

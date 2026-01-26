@@ -15,6 +15,6 @@ final class HomeContainer {
     }
     
     @MainActor func makeHomeViewModel() -> HomeViewModel {
-        return HomeViewModel()
+        return HomeViewModel(createTaskUseCase: CreateTaskUseCase(taskRepository: di.taskRepository), getTasksUseCase: GetTasksUseCase(taskRepository: di.taskRepository))
     }
 }
