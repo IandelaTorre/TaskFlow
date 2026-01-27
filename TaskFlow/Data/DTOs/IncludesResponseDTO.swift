@@ -22,7 +22,7 @@ struct AssignedUserResponseDto: Decodable {
     let email: String
     let name: String
     let lastName: String
-    let secondLastName: String
+    let secondLastName: String?
     let userCode: String
     let roleId: Int
     let enabled: Bool

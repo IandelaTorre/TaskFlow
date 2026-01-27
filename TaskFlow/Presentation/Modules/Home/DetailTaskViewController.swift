@@ -18,6 +18,7 @@ class DetailTaskViewController: UIViewController {
     @IBOutlet weak var nameAssignedByLabel: UILabel!
     @IBOutlet weak var userCodeAssignedByLabel: UILabel!
     @IBOutlet weak var taskDescriptionLabel: UILabel!
+    @IBOutlet weak var updateTaskButton: UIButton!
     
     var viewModel: HomeViewModel!
     var task: UserTask!
@@ -25,7 +26,25 @@ class DetailTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fillDetailData()
+        bind()
         // Do any additional setup after loading the view.
+    }
+    
+    private func bind() {
+        switch task.statusId {
+        case 1:
+            updateTaskButton.titleLabel?.text = "Iniciar tarea "
+        case 2:
+            updateTaskButton.titleLabel?.text = "Marcar como completada "
+        case 3:
+            updateTaskButton.titleLabel?.text = "Marcar como completada "
+            updateTaskButton.isEnabled = false
+        default:
+            updateTaskButton.titleLabel?.text = "Actualizar estado de tarea "
+            updateTaskButton.isEnabled = false
+        }
+        
+        
     }
     
     private func fillDetailData() {
@@ -43,5 +62,15 @@ class DetailTaskViewController: UIViewController {
             userCodeAssignedByLabel.text = ("ID: \(assignedBy.userCode)")
         }
     }
+    
+    @IBAction func UpdateTaskButtonAction(_ sender: Any) {
+        Task { @MainActor in
+            let update = await viewModel.updateTask(taskId: task.id, statusId: task.statusId + 1)
+            if update {
+                self.showToast(message: "Tarea actualizada correctamente. ", seconds: 3.0)
+            }
+        }
+    }
+    
 
 }

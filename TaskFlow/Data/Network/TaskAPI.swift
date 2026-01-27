@@ -70,6 +70,7 @@ final class TaskAPI {
         
         var dict: [String: String] = [:]
         res.headers.forEach { dict[$0.name] = $0.value }
+        print("Se trajeron los datos de la API: \(res.value)")
         
         return (res.value, dict)
     }

@@ -435,6 +435,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Marcar como completada"/>
+                                <connections>
+                                    <action selector="UpdateTaskButtonAction:" destination="htc-kE-xyf" eventType="touchUpInside" id="IP2-gB-dRb"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0X-dU-QLh">
                                 <rect key="frame" x="16" y="214.33333333333334" width="120" height="30"/>
@@ -490,6 +493,7 @@
                         <outlet property="taskDescriptionLabel" destination="7uX-OI-8e0" id="04O-Ci-3Xq"/>
                         <outlet property="taskTitleLabel" destination="h2K-yt-oHq" id="WgM-hP-Fr1"/>
                         <outlet property="taskbadgeContainerView" destination="X0X-dU-QLh" id="U5h-gJ-vdT"/>
+                        <outlet property="updateTaskButton" destination="gaQ-9h-VCA" id="YWL-M0-OON"/>
                         <outlet property="userCodeAssignedByLabel" destination="iG4-8t-ioY" id="DkL-iC-3af"/>
                         <outlet property="userCodeAssignedToLabel" destination="Fj7-SZ-Glb" id="HOD-DP-9BG"/>
                     </connections>

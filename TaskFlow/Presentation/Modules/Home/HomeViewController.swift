@@ -80,6 +80,14 @@ class HomeViewController: UIViewController {
             }
             .store(in: &cancellables)
         
+        viewModel.$errorMessage
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                print("ViewController (errorMessage): \(error ?? "")")
+                //if error != nil { self?.errorMessageLabel?.text = error }
+            }
+            .store(in: &cancellables)
+        
     }
     
     private func fillData(user: User?) {

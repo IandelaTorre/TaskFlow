@@ -45,12 +45,12 @@ class HomeViewModel {
         }
     }
     
-    func updateTask(taskId: Int, task: UserTask) async -> Bool {
+    func updateTask(taskId: Int, title: String? = nil, description: String? = nil, statusId: Int? = nil, assignedToCode: String? = nil, assignedByCode: String? = nil, isActive: Bool? = nil) async -> Bool {
         isLoading = true
         defer { isLoading = false }
         
         do {
-            _ = try await updateTaskUseCase.execute(taskId: taskId, title: task.title, description: task.description, statusId: task.statusId, assignedToCode: task.assignedToCode, assignedByCode: task.assignedByCode, isActive: task.isActive)
+            _ = try await updateTaskUseCase.execute(taskId: taskId, title: title, description: description, statusId: statusId, assignedToCode: assignedToCode, assignedByCode: assignedByCode, isActive: isActive)
             return true
         } catch {
             errorMessage = error.localizedDescription
