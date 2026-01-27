@@ -22,6 +22,14 @@ final class TaskRepositoryImpl: TaskRepository {
         return task
     }
     
+    func updateTask(taskId: Int, title: String?, description: String?, statusId: Int?, assignedToCode: String?, assignedByCode: String?, isActive: Bool?) async throws -> UserTask {
+        let res = try await api.updateTask(taskId: taskId, title: title, description: description, statusId: statusId, assignedToCode: assignedToCode, assignedByCode: assignedByCode, isActive: isActive)
+        
+        let task = UserTask(id: res.task.data.id, title: res.task.data.title, description: res.task.data.description, statusId: res.task.data.statusId, assignedToCode: res.task.data.assignedToCode, assignedByCode: res.task.data.assignedByCode, assignedAt: res.task.data.assignedAt, createdAt: res.task.data.createdAt, updatedAt: res.task.data.updatedAt, isActive: res.task.data.isActive, assignedBy: nil, assignedTo: nil, status: nil)
+        
+        return task
+    }
+    
     func getTasks() async throws -> [UserTask] {
         let res = try await api.getAllTasks()
         print("res(TaskRepositoryImpl): \(res)")
@@ -45,7 +53,7 @@ final class TaskRepositoryImpl: TaskRepository {
         let res = try await api.getMyTasks(userUuid: userUuid)
         
         let tasks = res.value.data.map { task in
-            UserTask(id: task.id, title: task.title, description: task.description, statusId: task.statusId, assignedToCode: task.assignedToCode, assignedByCode: task.assignedByCode, assignedAt: task.assignedAt, createdAt: task.createdAt, updatedAt: task.updatedAt, isActive: task.isActive, assignedBy: task.assignedBy != nil ? UserAssigned(id: task.assignedBy!.id, uuid: task.assignedBy!.uuid, email: task.assignedBy!.email, name: task.assignedBy!.name, lastName: task.assignedBy!.lastName, secondLastName: task.assignedBy?.secondLastName ?? "", userCode: task.assignedBy!.userCode, roleId: task.assignedBy!.roleId, enabled: task.assignedBy!.enabled) : nil, assignedTo: nil, status: task.status != nil ? UserTaskStatus(statusId: task.status!.statusId, code: task.status!.code, name: task.status!.name, description: task.status!.description, isActive: task.status!.isActive) : nil)
+            UserTask(id: task.id, title: task.title, description: task.description, statusId: task.statusId, assignedToCode: task.assignedToCode, assignedByCode: task.assignedByCode, assignedAt: task.assignedAt, createdAt: task.createdAt, updatedAt: task.updatedAt, isActive: task.isActive, assignedBy: task.assignedBy != nil ? UserAssigned(id: task.assignedBy!.id, uuid: task.assignedBy!.uuid, email: task.assignedBy!.email, name: task.assignedBy!.name, lastName: task.assignedBy!.lastName, secondLastName: task.assignedBy?.secondLastName ?? "", userCode: task.assignedBy!.userCode, roleId: task.assignedBy!.roleId, enabled: task.assignedBy!.enabled) : nil, assignedTo: task.assignedTo != nil ? UserAssigned(id: task.assignedTo!.id, uuid: task.assignedTo!.uuid, email: task.assignedTo!.email, name: task.assignedTo!.name, lastName: task.assignedTo!.lastName, secondLastName: task.assignedTo?.secondLastName ?? "", userCode: task.assignedTo!.userCode, roleId: task.assignedTo!.roleId, enabled: task.assignedTo!.enabled) : nil, status: task.status != nil ? UserTaskStatus(statusId: task.status!.statusId, code: task.status!.code, name: task.status!.name, description: task.status!.description, isActive: task.status!.isActive) : nil)
         }
         
         return tasks

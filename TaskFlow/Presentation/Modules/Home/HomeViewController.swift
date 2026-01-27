@@ -64,6 +64,7 @@ class HomeViewController: UIViewController {
         viewModel.$tasks
             .receive(on: RunLoop.main)
             .sink { [weak self] tasks in
+                print("Se cargaron las tareas ")
                 self?.tasksCollectionView.reloadData()
             }
             .store(in: &cancellables)
@@ -71,7 +72,10 @@ class HomeViewController: UIViewController {
         viewModel.$isLoading
             .receive(on: RunLoop.main)
             .sink { [weak self] loading in
-                if loading { self?.loadingIndicator.startAnimating() }
+                if loading {
+                    self?.loadingIndicator.startAnimating()
+                    print("Se esta cargando")
+                }
                 else { self?.loadingIndicator.stopAnimating() }
             }
             .store(in: &cancellables)

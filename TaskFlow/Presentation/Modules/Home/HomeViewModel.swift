@@ -13,6 +13,7 @@ class HomeViewModel {
     private let getTasksUseCase: GetTasksUseCase
     private let getMyTasksUseCase: GetMyTasksUseCase
     private let getTaskUseCase: GetTaskUseCase
+    private let updateTaskUseCase: UpdateTaskUseCase
     
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: String? = ""
@@ -23,11 +24,12 @@ class HomeViewModel {
     
     private var cancellables: Set<AnyCancellable> = []
     
-    init(createTaskUseCase: CreateTaskUseCase, getTasksUseCase: GetTasksUseCase, getMyTasksUseCase: GetMyTasksUseCase, getTaskUseCase: GetTaskUseCase) {
+    init(createTaskUseCase: CreateTaskUseCase, getTasksUseCase: GetTasksUseCase, getMyTasksUseCase: GetMyTasksUseCase, getTaskUseCase: GetTaskUseCase, updateTaskUseCase: UpdateTaskUseCase) {
         self.createTaskUseCase = createTaskUseCase
         self.getTasksUseCase = getTasksUseCase
         self.getMyTasksUseCase = getMyTasksUseCase
         self.getTaskUseCase = getTaskUseCase
+        self.updateTaskUseCase = updateTaskUseCase
     }
     
     func createTask(title: String, description: String, statusId: Int, assignedTo: String, assignedBy: String) async -> Bool {
@@ -36,6 +38,19 @@ class HomeViewModel {
         
         do {
             _ = try await createTaskUseCase.execute(title: title, description: description, statusId: statusId, assignedTo: assignedTo, assignedBy: assignedBy)
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+    
+    func updateTask(taskId: Int, task: UserTask) async -> Bool {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            _ = try await updateTaskUseCase.execute(taskId: taskId, title: task.title, description: task.description, statusId: task.statusId, assignedToCode: task.assignedToCode, assignedByCode: task.assignedByCode, isActive: task.isActive)
             return true
         } catch {
             errorMessage = error.localizedDescription

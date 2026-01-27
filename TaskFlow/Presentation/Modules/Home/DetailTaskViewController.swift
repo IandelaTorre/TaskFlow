@@ -24,20 +24,24 @@ class DetailTaskViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fillDetailData()
+        fillDetailData()
         // Do any additional setup after loading the view.
     }
     
     private func fillDetailData() {
-        /*taskTitleLabel.text = task.title
-        statusTaskLabel.text = task.status.name
-        taskBadgeLabel.text = task.status.name
-        nameAssignedToLabel.text = ("\(task.assignedTo.name) \(task.assignedTo.lastName)")
-        userCodeAssignedToLabel.text = ("ID: \(task.assignedTo.userCode)")
-        nameAssignedByLabel.text = ("\(task.assignedBy.name) \(task.assignedBy.lastName)")
-        userCodeAssignedByLabel.text = ("ID: \(task.assignedBy.userCode)")
-        taskDescriptionLabel.text = task.description*/
-        
+        print(task ?? "no se encontro task")
+        taskTitleLabel.text = task.title
+        taskDescriptionLabel.text = task.description
+        if let status = task.status {
+            statusTaskLabel.text = status.name
+            taskBadgeLabel.text = status.name
+        }
+        if let assignedTo = task.assignedTo, let assignedBy = task.assignedBy {
+            nameAssignedToLabel.text = ("\(assignedTo.name) \(assignedTo.lastName)")
+            userCodeAssignedToLabel.text = ("ID: \(assignedTo.userCode)")
+            nameAssignedByLabel.text = ("\(assignedBy.name) \(assignedBy.lastName)")
+            userCodeAssignedByLabel.text = ("ID: \(assignedBy.userCode)")
+        }
     }
 
 }

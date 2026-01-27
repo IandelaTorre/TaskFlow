@@ -24,6 +24,15 @@ final class TaskAPI {
         return (res.value, dict)
     }
     
+    func updateTask(taskId: Int, title: String?, description: String?, statusId: Int?, assignedToCode: String?, assignedByCode: String?, isActive: Bool?) async throws -> (task: TaskResponseDTO, headers: [String: String]) {
+        let dto = UpdateTaskRequestDTO(title: title, description: description, statusId: statusId, assignedToCode: assignedToCode, assignedByCode: assignedByCode, isActive: isActive)
+        let res: (value: TaskResponseDTO, headers: Alamofire.HTTPHeaders) = try await client.patch("/tasks/\(taskId)", body: dto)
+        
+        var dict: [String: String] = [:]
+        res.headers.forEach { dict[$0.name] = $0.value }
+        return (res.value, dict)
+    }
+    
     func getAllTasks() async throws -> (value: TasksResponseDTO, headers: [String: String]) {
         /*let queryParams: [String: Any] = [
                 "isActive": isActive,
