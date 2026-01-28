@@ -31,9 +31,9 @@ class TaskCell: UICollectionViewCell {
     
     func configure(with task: UserTask) {
         titleLabel.text = task.title
-        badgeLabel.text = task.status.name
+        badgeLabel.text = task.status?.name
         
-        switch task.status.code {
+        switch task.status?.code {
         case "DONE":
             statusImageView.image = UIImage(systemName: "circle.fill")
             statusImageView.tintColor = .systemGreen

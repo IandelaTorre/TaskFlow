@@ -9,13 +9,54 @@ import Foundation
 import Combine
 
 class HomeViewModel {
+    private let createTaskUseCase: CreateTaskUseCase
+    private let getTasksUseCase: GetTasksUseCase
+    private let getMyTasksUseCase: GetMyTasksUseCase
+    private let getTaskUseCase: GetTaskUseCase
+    private let updateTaskUseCase: UpdateTaskUseCase
     
     @Published private(set) var isLoading: Bool = false
+    @Published private(set) var errorMessage: String? = ""
     
     @Published var user: User? = nil
     @Published var tasks: [UserTask]? = nil
+    @Published var detailTask: UserTask? = nil
     
     private var cancellables: Set<AnyCancellable> = []
+    
+    init(createTaskUseCase: CreateTaskUseCase, getTasksUseCase: GetTasksUseCase, getMyTasksUseCase: GetMyTasksUseCase, getTaskUseCase: GetTaskUseCase, updateTaskUseCase: UpdateTaskUseCase) {
+        self.createTaskUseCase = createTaskUseCase
+        self.getTasksUseCase = getTasksUseCase
+        self.getMyTasksUseCase = getMyTasksUseCase
+        self.getTaskUseCase = getTaskUseCase
+        self.updateTaskUseCase = updateTaskUseCase
+    }
+    
+    func createTask(title: String, description: String, statusId: Int, assignedTo: String, assignedBy: String) async -> Bool {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            _ = try await createTaskUseCase.execute(title: title, description: description, statusId: statusId, assignedTo: assignedTo, assignedBy: assignedBy)
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+    
+    func updateTask(taskId: Int, title: String? = nil, description: String? = nil, statusId: Int? = nil, assignedToCode: String? = nil, assignedByCode: String? = nil, isActive: Bool? = nil) async -> Bool {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            _ = try await updateTaskUseCase.execute(taskId: taskId, title: title, description: description, statusId: statusId, assignedToCode: assignedToCode, assignedByCode: assignedByCode, isActive: isActive)
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
     
     func loadUser() {
         if let user = CoreDataHelper.shared.fetchFirstUser() {
@@ -26,48 +67,46 @@ class HomeViewModel {
     }
     
     func fetchTasks() {
-        // MARK: - Mock Data para Pruebas
-
-        let mockTasks: [UserTask] = [
-            // 1. Tarea Pendiente (Sin completar)
-            UserTask(
-                title: "Revisar arquitectura de red",
-                description: "Analizar los diagramas de flujo y verificar la latencia en los nodos principales del sector norte.",
-                status: UserTaskStatus(id: "1", code: "PROG", name: "En progreso"),
-                assignedTo: UserAssigned(id: "u1", userCode: "IPEREZ", name: "Ian", lastName: "Pérez"),
-                assignedBy: UserAssigned(id: "u2", userCode: "ADMIN", name: "Sistema", lastName: "Global"),
-                assignedAt: Date(),
-                createdAt: Date().addingTimeInterval(-86400), // Ayer
-                updatedAt: Date(),
-                isEnabled: true
-            ),
-            
-            // 2. Tarea Completada (Para probar el icono de Ready)
-            UserTask(
-                title: "Entrevistas de QA",
-                description: "Finalizar la terna de candidatos para la vacante de automatización móvil.",
-                status: UserTaskStatus(id: "2", code: "DONE", name: "Completada"),
-                assignedTo: UserAssigned(id: "u1", userCode: "IPEREZ", name: "Ian", lastName: "Pérez"),
-                assignedBy: UserAssigned(id: "u3", userCode: "HR_MGR", name: "Laura", lastName: "García"),
-                assignedAt: Date().addingTimeInterval(-172800), // Hace 2 días
-                createdAt: Date().addingTimeInterval(-172800),
-                updatedAt: Date(),
-                isEnabled: true
-            ),
-            
-            // 3. Tarea con descripción larga (Para probar el scroll y expansión)
-            UserTask(
-                title: "Actualización de certificados SSL",
-                description: "Es necesario renovar los certificados de los servidores de staging y producción antes del próximo viernes para evitar caídas en el servicio.",
-                status: UserTaskStatus(id: "3", code: "PEND", name: "Pendiente"),
-                assignedTo: UserAssigned(id: "u1", userCode: "IPEREZ", name: "Ian", lastName: "Pérez"),
-                assignedBy: UserAssigned(id: "u2", userCode: "ADMIN", name: "Sistema", lastName: "Global"),
-                assignedAt: Date(),
-                createdAt: Date(),
-                updatedAt: Date(),
-                isEnabled: true
-            )
-        ]
-        self.tasks = mockTasks
+        isLoading = true
+        defer { isLoading = false }
+        
+        Task {
+            do {
+                let fetchedTasks = try await getTasksUseCase.execute()
+                print(fetchedTasks)
+                self.tasks = fetchedTasks
+            } catch {
+                self.errorMessage = error.localizedDescription
+            }
+        }
+    }
+    
+    func fetchMyTasks(userUuid: UUID) {
+        isLoading = true
+        defer { isLoading = false }
+        
+        Task {
+            do {
+                let fetchedTasks = try await getMyTasksUseCase.execute(userUuid: userUuid)
+                print(fetchedTasks)
+                self.tasks = fetchedTasks
+            } catch {
+                self.errorMessage = error.localizedDescription
+            }
+        }
+    }
+    
+    func fetchTask(taskId: Int) async -> Bool {
+        isLoading = true
+        defer { isLoading = false }
+        
+        do {
+            let task = try await getTaskUseCase.execute(taskId: taskId)
+            self.detailTask = task
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
     }
 }

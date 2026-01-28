@@ -66,9 +66,6 @@
                                     <constraint firstItem="uTA-ei-Lap" firstAttribute="top" secondItem="zvc-R2-SS1" secondAttribute="top" id="qEj-Zw-VhJ"/>
                                 </constraints>
                             </stackView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-Cf-Du6">
-                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
-                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Slm-OF-lIY">
                                 <rect key="frame" x="16" y="309" width="361" height="467"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -78,6 +75,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="2MQ-LE-JSP">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="467"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskCell" id="a2Y-oa-bO3" customClass="TaskCell" customModule="TaskFlow" customModuleProvider="target">
                                         <rect key="frame" x="27.666666666666668" y="0.0" width="306" height="74.333333333333329"/>
@@ -163,14 +164,12 @@
                         <constraints>
                             <constraint firstItem="dMF-zU-sBV" firstAttribute="centerX" secondItem="qWH-vX-cEJ" secondAttribute="centerX" id="2RO-Yt-cfu"/>
                             <constraint firstItem="Hao-aV-bOj" firstAttribute="bottom" secondItem="Slm-OF-lIY" secondAttribute="bottom" constant="8" id="3zG-uK-kpP"/>
-                            <constraint firstItem="M8W-Cf-Du6" firstAttribute="centerX" secondItem="qWH-vX-cEJ" secondAttribute="centerX" id="D8M-4w-x33"/>
                             <constraint firstItem="zvc-R2-SS1" firstAttribute="leading" secondItem="Hao-aV-bOj" secondAttribute="leading" constant="16" id="GEk-fW-tV5"/>
                             <constraint firstItem="Hao-aV-bOj" firstAttribute="trailing" secondItem="Slm-OF-lIY" secondAttribute="trailing" constant="16" id="P75-iU-OXD"/>
                             <constraint firstAttribute="trailing" secondItem="zvc-R2-SS1" secondAttribute="trailing" constant="16" id="R16-Ql-rNX"/>
                             <constraint firstItem="zvc-R2-SS1" firstAttribute="top" secondItem="dMF-zU-sBV" secondAttribute="bottom" constant="16" id="bMW-gl-uRd"/>
                             <constraint firstItem="Slm-OF-lIY" firstAttribute="top" secondItem="zvc-R2-SS1" secondAttribute="bottom" constant="16" id="e0n-mg-IKT"/>
                             <constraint firstItem="Slm-OF-lIY" firstAttribute="leading" secondItem="Hao-aV-bOj" secondAttribute="leading" constant="16" id="ebI-F8-FsN"/>
-                            <constraint firstItem="M8W-Cf-Du6" firstAttribute="centerY" secondItem="qWH-vX-cEJ" secondAttribute="centerY" id="lZ8-Ht-DII"/>
                             <constraint firstItem="dMF-zU-sBV" firstAttribute="top" secondItem="Hao-aV-bOj" secondAttribute="top" constant="16" id="po0-vl-GnO"/>
                         </constraints>
                     </view>
@@ -184,13 +183,13 @@
                     <connections>
                         <outlet property="homeCodeLabel" destination="mPA-cR-XUI" id="0FN-mj-hSw"/>
                         <outlet property="homeNameLabel" destination="7ey-r4-kgQ" id="kps-rK-uom"/>
-                        <outlet property="loadingIndicator" destination="M8W-Cf-Du6" id="8qf-X4-xMQ"/>
+                        <outlet property="loadingIndicator" destination="2MQ-LE-JSP" id="Asl-LA-B6T"/>
                         <outlet property="tasksCollectionView" destination="Slm-OF-lIY" id="bSa-Vb-MwO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSy-Lj-jQP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4277" y="-164"/>
+            <point key="canvasLocation" x="4275.5725190839694" y="-164.08450704225353"/>
         </scene>
         <!--Añadir tarea-->
         <scene sceneID="iox-tl-DgQ">
@@ -221,7 +220,7 @@
                                             <constraint firstAttribute="height" constant="44" id="Uhn-Fd-bu4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="one-time-code"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CQo-EL-ZBi">
                                         <rect key="frame" x="0.0" y="80.333333333333314" width="361" height="34.333333333333343"/>
@@ -230,11 +229,17 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Asignar a mi"/>
+                                                <connections>
+                                                    <action selector="AssignToMeButtonAction:" destination="93F-Ke-0nq" eventType="touchUpInside" id="fTT-rn-GDL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-W0-DGM">
                                                 <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Elegir de la lista"/>
+                                                <connections>
+                                                    <action selector="UsersListButtonAction:" destination="93F-Ke-0nq" eventType="touchUpInside" id="t9s-41-MQ1"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -261,7 +266,7 @@
                                             <constraint firstAttribute="height" constant="44" id="Nn2-pA-Px2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="one-time-code"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMx-gz-Pi5">
                                         <rect key="frame" x="0.0" y="108.66666666666663" width="361" height="20.333333333333343"/>
@@ -275,21 +280,29 @@
                                             <constraint firstAttribute="height" constant="44" id="occ-Ws-0aD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="one-time-code"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBc-G0-bTk">
                                 <rect key="frame" x="16" y="727" width="361" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fBc-G0-bTk" secondAttribute="height" multiplier="361:49" id="A9V-6W-nDd"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Crear tarea"/>
+                                <connections>
+                                    <action selector="CreateTaskButtonAction:" destination="93F-Ke-0nq" eventType="touchUpInside" id="Wf5-qr-7DO"/>
+                                </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="XkZ-zq-eTs">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f46-J1-dvz"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KK3-Ir-8zH" firstAttribute="leading" secondItem="f46-J1-dvz" secondAttribute="leading" constant="16" id="54V-p4-Psg"/>
-                            <constraint firstItem="fBc-G0-bTk" firstAttribute="width" secondItem="fBc-G0-bTk" secondAttribute="height" multiplier="361:49" id="A9V-6W-nDd"/>
                             <constraint firstItem="f46-J1-dvz" firstAttribute="trailing" secondItem="3oH-us-Gch" secondAttribute="trailing" constant="16" id="BwF-cG-3MI"/>
                             <constraint firstItem="OfK-Lq-YfW" firstAttribute="leading" secondItem="f46-J1-dvz" secondAttribute="leading" constant="16" id="C9H-ie-ZuK"/>
                             <constraint firstItem="KK3-Ir-8zH" firstAttribute="top" secondItem="OfK-Lq-YfW" secondAttribute="bottom" constant="32" id="IfZ-Te-bBY"/>
@@ -298,12 +311,21 @@
                             <constraint firstItem="f46-J1-dvz" firstAttribute="trailing" secondItem="OfK-Lq-YfW" secondAttribute="trailing" constant="16" id="LI4-8U-s00"/>
                             <constraint firstItem="3oH-us-Gch" firstAttribute="leading" secondItem="f46-J1-dvz" secondAttribute="leading" constant="16" id="LzX-m4-wUr"/>
                             <constraint firstItem="f46-J1-dvz" firstAttribute="trailing" secondItem="KK3-Ir-8zH" secondAttribute="trailing" constant="16" id="XF0-TF-UP2"/>
+                            <constraint firstItem="XkZ-zq-eTs" firstAttribute="centerY" secondItem="h0r-sM-Dhv" secondAttribute="centerY" id="Xzz-8O-2dO"/>
                             <constraint firstAttribute="trailing" secondItem="fBc-G0-bTk" secondAttribute="trailing" constant="16" id="ibJ-Ph-A0H"/>
                             <constraint firstItem="OfK-Lq-YfW" firstAttribute="top" secondItem="f46-J1-dvz" secondAttribute="top" constant="8" id="qHx-dv-BRp"/>
+                            <constraint firstItem="XkZ-zq-eTs" firstAttribute="centerX" secondItem="h0r-sM-Dhv" secondAttribute="centerX" id="tp0-vc-p3b"/>
                             <constraint firstItem="3oH-us-Gch" firstAttribute="top" secondItem="KK3-Ir-8zH" secondAttribute="bottom" constant="32" id="yyb-u2-22z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Añadir tarea" id="3G3-xS-Ke1"/>
+                    <connections>
+                        <outlet property="assignToTextField" destination="sc0-0e-2vg" id="VKQ-aQ-MWh"/>
+                        <outlet property="createTaskButton" destination="fBc-G0-bTk" id="5PH-m0-u4q"/>
+                        <outlet property="descriptionTextField" destination="3Xd-Wi-LxF" id="oVa-xS-LIz"/>
+                        <outlet property="loadingIndicator" destination="XkZ-zq-eTs" id="FPD-MQ-p4a"/>
+                        <outlet property="titleTextField" destination="DZm-ZI-eNS" id="wrF-N9-C4e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wpO-WR-iaP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -434,6 +456,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Marcar como completada"/>
+                                <connections>
+                                    <action selector="UpdateTaskButtonAction:" destination="htc-kE-xyf" eventType="touchUpInside" id="IP2-gB-dRb"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0X-dU-QLh">
                                 <rect key="frame" x="16" y="214.33333333333334" width="120" height="30"/>
@@ -489,6 +514,7 @@
                         <outlet property="taskDescriptionLabel" destination="7uX-OI-8e0" id="04O-Ci-3Xq"/>
                         <outlet property="taskTitleLabel" destination="h2K-yt-oHq" id="WgM-hP-Fr1"/>
                         <outlet property="taskbadgeContainerView" destination="X0X-dU-QLh" id="U5h-gJ-vdT"/>
+                        <outlet property="updateTaskButton" destination="gaQ-9h-VCA" id="YWL-M0-OON"/>
                         <outlet property="userCodeAssignedByLabel" destination="iG4-8t-ioY" id="DkL-iC-3af"/>
                         <outlet property="userCodeAssignedToLabel" destination="Fj7-SZ-Glb" id="HOD-DP-9BG"/>
                     </connections>

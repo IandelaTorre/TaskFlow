@@ -24,9 +24,9 @@ final class LocalRepositoryImpl: LocalRepository {
     
     func saveLoggedUser(user: UserEntity, token: String?) {
         
-        coreData.saveLoggedUser(id: Int64(user.id), email: user.email, name: user.name, lastName: user.lastName, secondLastName: user.secondLastName, userCode: user.userCode, roleId: String(user.roleId), jwt: token)
+        coreData.saveLoggedUser(id: Int64(user.id), uuid: UUID(uuidString: user.uuid)!, email: user.email, name: user.name, lastName: user.lastName, secondLastName: user.secondLastName, userCode: user.userCode, roleId: String(user.roleId), enabled: user.enabled, jwt: token)
     }
-    
+    // TODO terminar esta funcion
     func getLoggedUser() -> UserEntity? {
         return nil
     }

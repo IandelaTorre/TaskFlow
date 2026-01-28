@@ -29,7 +29,6 @@ class HomeViewController: UIViewController {
         setupCollectionView()
         bind()
         viewModel.loadUser()
-        viewModel.fetchTasks()
         
 
         // Do any additional setup after loading the view.
@@ -54,13 +53,18 @@ class HomeViewController: UIViewController {
         viewModel.$user
             .receive(on: RunLoop.main)
             .sink { [weak self] user in
-                self?.fillData(user: user)
+                if user != nil {
+                    self?.fillData(user: user)
+                    self?.viewModel.fetchMyTasks(userUuid: user?.userUuid ?? UUID())
+                }
+                
             }
             .store(in: &cancellables)
         
         viewModel.$tasks
             .receive(on: RunLoop.main)
             .sink { [weak self] tasks in
+                print("Se cargaron las tareas ")
                 self?.tasksCollectionView.reloadData()
             }
             .store(in: &cancellables)
@@ -68,15 +72,26 @@ class HomeViewController: UIViewController {
         viewModel.$isLoading
             .receive(on: RunLoop.main)
             .sink { [weak self] loading in
-                if loading { self?.loadingIndicator.startAnimating() }
+                if loading {
+                    self?.loadingIndicator.startAnimating()
+                    print("Se esta cargando")
+                }
                 else { self?.loadingIndicator.stopAnimating() }
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$errorMessage
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                print("ViewController (errorMessage): \(error ?? "")")
+                //if error != nil { self?.errorMessageLabel?.text = error }
             }
             .store(in: &cancellables)
         
     }
     
     private func fillData(user: User?) {
-        homeNameLabel.text = user?.name ?? "No name"
+        homeNameLabel.text = "\(user?.name ?? "No name") \(user?.lastName ?? "")"
         homeCodeLabel.text = "Tu código: \(user?.userCode ?? "ABC-123")"
     }
     
@@ -104,7 +119,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: false)
+        collectionView.deselectItem(at: indexPath, animated: true)
         guard let selectedTask = viewModel.tasks?[indexPath.item] else { return }
         onTapDetailTask?(selectedTask)
     }
