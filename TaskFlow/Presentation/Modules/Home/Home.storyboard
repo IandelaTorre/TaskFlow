@@ -220,7 +220,7 @@
                                             <constraint firstAttribute="height" constant="44" id="Uhn-Fd-bu4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="one-time-code"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CQo-EL-ZBi">
                                         <rect key="frame" x="0.0" y="80.333333333333314" width="361" height="34.333333333333343"/>
@@ -229,11 +229,17 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Asignar a mi"/>
+                                                <connections>
+                                                    <action selector="AssignToMeButtonAction:" destination="93F-Ke-0nq" eventType="touchUpInside" id="fTT-rn-GDL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-W0-DGM">
                                                 <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Elegir de la lista"/>
+                                                <connections>
+                                                    <action selector="UsersListButtonAction:" destination="93F-Ke-0nq" eventType="touchUpInside" id="t9s-41-MQ1"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -260,7 +266,7 @@
                                             <constraint firstAttribute="height" constant="44" id="Nn2-pA-Px2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="one-time-code"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripción" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMx-gz-Pi5">
                                         <rect key="frame" x="0.0" y="108.66666666666663" width="361" height="20.333333333333343"/>
@@ -274,7 +280,7 @@
                                             <constraint firstAttribute="height" constant="44" id="occ-Ws-0aD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="one-time-code"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -285,7 +291,13 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Crear tarea"/>
+                                <connections>
+                                    <action selector="CreateTaskButtonAction:" destination="93F-Ke-0nq" eventType="touchUpInside" id="Wf5-qr-7DO"/>
+                                </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="XkZ-zq-eTs">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f46-J1-dvz"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -299,12 +311,21 @@
                             <constraint firstItem="f46-J1-dvz" firstAttribute="trailing" secondItem="OfK-Lq-YfW" secondAttribute="trailing" constant="16" id="LI4-8U-s00"/>
                             <constraint firstItem="3oH-us-Gch" firstAttribute="leading" secondItem="f46-J1-dvz" secondAttribute="leading" constant="16" id="LzX-m4-wUr"/>
                             <constraint firstItem="f46-J1-dvz" firstAttribute="trailing" secondItem="KK3-Ir-8zH" secondAttribute="trailing" constant="16" id="XF0-TF-UP2"/>
+                            <constraint firstItem="XkZ-zq-eTs" firstAttribute="centerY" secondItem="h0r-sM-Dhv" secondAttribute="centerY" id="Xzz-8O-2dO"/>
                             <constraint firstAttribute="trailing" secondItem="fBc-G0-bTk" secondAttribute="trailing" constant="16" id="ibJ-Ph-A0H"/>
                             <constraint firstItem="OfK-Lq-YfW" firstAttribute="top" secondItem="f46-J1-dvz" secondAttribute="top" constant="8" id="qHx-dv-BRp"/>
+                            <constraint firstItem="XkZ-zq-eTs" firstAttribute="centerX" secondItem="h0r-sM-Dhv" secondAttribute="centerX" id="tp0-vc-p3b"/>
                             <constraint firstItem="3oH-us-Gch" firstAttribute="top" secondItem="KK3-Ir-8zH" secondAttribute="bottom" constant="32" id="yyb-u2-22z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Añadir tarea" id="3G3-xS-Ke1"/>
+                    <connections>
+                        <outlet property="assignToTextField" destination="sc0-0e-2vg" id="VKQ-aQ-MWh"/>
+                        <outlet property="createTaskButton" destination="fBc-G0-bTk" id="5PH-m0-u4q"/>
+                        <outlet property="descriptionTextField" destination="3Xd-Wi-LxF" id="oVa-xS-LIz"/>
+                        <outlet property="loadingIndicator" destination="XkZ-zq-eTs" id="FPD-MQ-p4a"/>
+                        <outlet property="titleTextField" destination="DZm-ZI-eNS" id="wrF-N9-C4e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wpO-WR-iaP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
