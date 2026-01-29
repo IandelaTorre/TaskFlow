@@ -109,4 +109,13 @@ class HomeViewModel {
             return false
         }
     }
+    
+    func refreshData() {
+        loadUser()
+        if let currentUser = user?.userUuid {
+            fetchMyTasks(userUuid: currentUser)
+        } else {
+            isLoading = false
+        }
+    }
 }

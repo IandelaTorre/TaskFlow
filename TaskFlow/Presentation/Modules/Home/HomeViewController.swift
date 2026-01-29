@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var homeCodeLabel: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tasksCollectionView: UICollectionView!
+    @IBOutlet weak var errorMessageLabel: UILabel!
     
     
     
@@ -23,10 +24,12 @@ class HomeViewController: UIViewController {
     var onTapDetailTask: ((UserTask) -> Void)?
     
     private var cancellables = Set<AnyCancellable>()
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        setupRefreshControl()
         bind()
         viewModel.loadUser()
         
@@ -46,6 +49,17 @@ class HomeViewController: UIViewController {
         tasksCollectionView.collectionViewLayout = layout
         
         
+    }
+    
+    private func setupRefreshControl() {
+        refreshControl.tintColor = .systemBlue
+        refreshControl.addTarget(self , action: #selector(didPullToRefresh), for: .valueChanged)
+        tasksCollectionView.refreshControl = refreshControl
+    }
+    
+    @objc private func didPullToRefresh() {
+        viewModel.refreshData()
+        print("Se esta ejecutando el pull to refresh. ")
     }
     
     private func bind() {
@@ -72,19 +86,24 @@ class HomeViewController: UIViewController {
         viewModel.$isLoading
             .receive(on: RunLoop.main)
             .sink { [weak self] loading in
+                guard let self = self else { return }
                 if loading {
-                    self?.loadingIndicator.startAnimating()
-                    print("Se esta cargando")
+                    if !self.refreshControl.isRefreshing {
+                        self.loadingIndicator.startAnimating()
+                    } else {
+                        self.loadingIndicator.stopAnimating()
+                        if self.refreshControl.isRefreshing {
+                            self.refreshControl.endRefreshing()
+                        }
+                    }
                 }
-                else { self?.loadingIndicator.stopAnimating() }
             }
             .store(in: &cancellables)
         
         viewModel.$errorMessage
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
-                print("ViewController (errorMessage): \(error ?? "")")
-                //if error != nil { self?.errorMessageLabel?.text = error }
+                if error != nil { self?.errorMessageLabel?.text = error }
             }
             .store(in: &cancellables)
         

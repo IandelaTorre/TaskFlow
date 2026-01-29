@@ -7,18 +7,18 @@
 
 import UIKit
 
-class DetailTaskViewController: UIViewController {
+class DetailTaskViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var taskTitleLabel: UILabel!
-    @IBOutlet weak var statusTaskLabel: UILabel!
     @IBOutlet weak var taskbadgeContainerView: UIView!
     @IBOutlet weak var taskBadgeLabel: UILabel!
     @IBOutlet weak var nameAssignedToLabel: UILabel!
     @IBOutlet weak var userCodeAssignedToLabel: UILabel!
     @IBOutlet weak var nameAssignedByLabel: UILabel!
     @IBOutlet weak var userCodeAssignedByLabel: UILabel!
-    @IBOutlet weak var taskDescriptionLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var updateTaskButton: UIButton!
+    @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel: HomeViewModel!
     var task: UserTask!
@@ -27,6 +27,7 @@ class DetailTaskViewController: UIViewController {
         super.viewDidLoad()
         fillDetailData()
         bind()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -50,9 +51,8 @@ class DetailTaskViewController: UIViewController {
     private func fillDetailData() {
         print(task ?? "no se encontro task")
         taskTitleLabel.text = task.title
-        taskDescriptionLabel.text = task.description
+        descriptionTextView.text = task.description
         if let status = task.status {
-            statusTaskLabel.text = status.name
             taskBadgeLabel.text = status.name
         }
         if let assignedTo = task.assignedTo, let assignedBy = task.assignedBy {
