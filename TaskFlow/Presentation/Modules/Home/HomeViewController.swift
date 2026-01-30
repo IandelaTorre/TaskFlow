@@ -33,8 +33,6 @@ class HomeViewController: UIViewController {
         bind()
         viewModel.loadUser()
         
-
-        // Do any additional setup after loading the view.
     }
     
     private func setupCollectionView() {
@@ -59,7 +57,6 @@ class HomeViewController: UIViewController {
     
     @objc private func didPullToRefresh() {
         viewModel.refreshData()
-        print("Se esta ejecutando el pull to refresh. ")
     }
     
     private func bind() {
@@ -78,7 +75,6 @@ class HomeViewController: UIViewController {
         viewModel.$tasks
             .receive(on: RunLoop.main)
             .sink { [weak self] tasks in
-                print("Se cargaron las tareas ")
                 self?.tasksCollectionView.reloadData()
             }
             .store(in: &cancellables)
@@ -87,14 +83,15 @@ class HomeViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] loading in
                 guard let self = self else { return }
+                print("HomeViewController: \(loading)")
                 if loading {
                     if !self.refreshControl.isRefreshing {
                         self.loadingIndicator.startAnimating()
-                    } else {
-                        self.loadingIndicator.stopAnimating()
-                        if self.refreshControl.isRefreshing {
-                            self.refreshControl.endRefreshing()
-                        }
+                    }
+                } else {
+                    self.loadingIndicator.stopAnimating()
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
                     }
                 }
             }
