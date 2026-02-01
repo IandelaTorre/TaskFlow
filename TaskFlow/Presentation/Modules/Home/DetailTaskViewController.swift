@@ -72,7 +72,6 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
     }
     
     private func fillDetailData() {
-        print(task ?? "no se encontro task")
         taskTitleLabel.text = task.title
         descriptionTextView.text = task.description
         if let status = task.status {
@@ -88,10 +87,9 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func UpdateTaskButtonAction(_ sender: Any) {
         updateTaskButton.isEnabled = false
-        
-        defer { updateTaskButton.isEnabled = true }
-        
+
         Task { @MainActor in
+            defer { updateTaskButton.isEnabled = true }
             let update = await viewModel.updateTask(taskId: task.id, statusId: task.statusId + 1)
             if update {
                 self.showToast(message: "Tarea actualizada correctamente. ", seconds: 3.0)

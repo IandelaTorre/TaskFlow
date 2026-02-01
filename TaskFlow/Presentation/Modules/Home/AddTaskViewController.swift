@@ -101,12 +101,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func CreateTaskButtonAction(_ sender: Any) {
         createTaskButton.isEnabled = false
-
-        defer {
-            createTaskButton.isEnabled = true
-        }
         
         Task { @MainActor in
+            defer { createTaskButton.isEnabled = true }
             if let assignTo = assignToTextField.text, let title = titleTextField.text, let description = messageTextView.text, let assignedBy = viewModel.user?.userCode {
                 let create = await self.viewModel.createTask(title: title, description: description, statusId: 1, assignedTo: assignTo, assignedBy: assignedBy)
                 if create {
