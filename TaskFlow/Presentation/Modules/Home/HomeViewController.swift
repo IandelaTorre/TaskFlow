@@ -61,6 +61,7 @@ class HomeViewController: UIViewController {
     
     private func bind() {
         loadingIndicator.hidesWhenStopped = true
+        errorMessageLabel.isHidden = true
         viewModel.$user
             .receive(on: RunLoop.main)
             .sink { [weak self] user in
@@ -100,7 +101,10 @@ class HomeViewController: UIViewController {
         viewModel.$errorMessage
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
-                if error != nil { self?.errorMessageLabel?.text = error }
+                if let message = error {
+                    self?.errorMessageLabel.text = message
+                    self?.errorMessageLabel.isHidden = false
+                }
             }
             .store(in: &cancellables)
         

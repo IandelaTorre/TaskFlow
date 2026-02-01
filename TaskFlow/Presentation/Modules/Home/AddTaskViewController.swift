@@ -22,6 +22,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     private var cancellables: Set<AnyCancellable> = []
     let maxLines: CGFloat = 4
     let minHeight: CGFloat = 40
+    var onSuccess: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +87,12 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 else { self?.loadingIndicator.stopAnimating() }
             }
             .store(in: &cancellables)
-        
+        viewModel.$errorMessage
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                if let message = error { self?.showToast(message: message, seconds: 3.0)}
+            }
+            .store(in: &cancellables)
     }
     
     @objc func hideKeyboard() {
@@ -105,9 +111,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 let create = await self.viewModel.createTask(title: title, description: description, statusId: 1, assignedTo: assignTo, assignedBy: assignedBy)
                 if create {
                     self.showToast(message: "Tarea actualizada correctamente. ", seconds: 3.0)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.onSuccess?()
+                    }
                 }
-            } else {
-                self.showToast(message: "Alguno de los campos no esta cargando correctamente.", seconds: 3.0)
             }
         }
     }

@@ -25,6 +25,8 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
     var viewModel: HomeViewModel!
     var task: UserTask!
     
+    var onSuccess: (() -> Void)?
+    
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -37,6 +39,7 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
     
     private func bind() {
         loadingIndicator.hidesWhenStopped = true
+        
         switch task.statusId {
         case 1:
             updateTaskButton.titleLabel?.text = "Iniciar tarea "
@@ -53,7 +56,7 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
         viewModel.$errorMessage
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
-                if error != nil { self?.showToast(message: "\(error ?? "")", seconds: 3.0) }
+                if let message = error { self?.showToast(message: message, seconds: 3.0) }
             }
             .store(in: &cancellables)
         
@@ -92,6 +95,9 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
             let update = await viewModel.updateTask(taskId: task.id, statusId: task.statusId + 1)
             if update {
                 self.showToast(message: "Tarea actualizada correctamente. ", seconds: 3.0)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.onSuccess?()
+                }
             }
         }
     }
