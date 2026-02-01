@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tasksCollectionView: UICollectionView!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var cardInfoView: UIView!
     
     
     
@@ -28,6 +29,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCardStyle(view: cardInfoView)
         setupCollectionView()
         setupRefreshControl()
         bind()
@@ -47,6 +49,18 @@ class HomeViewController: UIViewController {
         tasksCollectionView.collectionViewLayout = layout
         
         
+    }
+    
+    func setupCardStyle(view: UIView) {
+        view.layer.cornerRadius = 16
+        view.layer.cornerCurve = .continuous
+        
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.1
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowRadius = 6
+        
+        view.layer.masksToBounds = false
     }
     
     private func setupRefreshControl() {
@@ -123,6 +137,12 @@ class HomeViewController: UIViewController {
         onTapAddTask?()
     }
     
+    @IBAction func CopyCodeButtonAction(_ sender: Any) {
+        if let currentUser = viewModel.user?.userCode {
+            UIPasteboard.general.string = currentUser
+            self.showToast(message: "Código copiado correctamente (\(currentUser)).", seconds: 3.0)
+        }
+    }
 }
 
 

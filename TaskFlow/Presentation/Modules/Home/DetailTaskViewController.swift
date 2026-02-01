@@ -75,7 +75,7 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
         taskTitleLabel.text = task.title
         descriptionTextView.text = task.description
         if let status = task.status {
-            taskBadgeLabel.text = status.name
+            setupBadgeStatus(badgeInfo: status)
         }
         if let assignedTo = task.assignedTo, let assignedBy = task.assignedBy {
             nameAssignedToLabel.text = ("\(assignedTo.name) \(assignedTo.lastName)")
@@ -85,6 +85,24 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    private func setupBadgeStatus(badgeInfo: UserTaskStatus) {
+        taskbadgeContainerView.layer.cornerRadius = 6
+        taskbadgeContainerView.clipsToBounds = true
+        taskBadgeLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        taskBadgeLabel.text = badgeInfo.name
+        switch badgeInfo.code {
+        case "DONE":
+            taskbadgeContainerView.backgroundColor = .systemGreen.withAlphaComponent(0.2)
+            taskBadgeLabel.textColor = .systemGreen
+        case "PROG":
+            taskbadgeContainerView.backgroundColor = .systemBlue.withAlphaComponent(0.2)
+            taskBadgeLabel.textColor = .systemBlue
+        default:
+            taskbadgeContainerView.backgroundColor = .systemGray5
+            taskBadgeLabel.textColor = .systemGray
+        }
+    }
+ 
     @IBAction func UpdateTaskButtonAction(_ sender: Any) {
         updateTaskButton.isEnabled = false
 
