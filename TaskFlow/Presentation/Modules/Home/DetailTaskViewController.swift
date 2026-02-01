@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class DetailTaskViewController: UIViewController, UITextViewDelegate {
     
@@ -19,9 +20,14 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var updateTaskButton: UIButton!
     @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var viewModel: HomeViewModel!
     var task: UserTask!
+    
+    var onSuccess: (() -> Void)?
+    
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +38,8 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
     }
     
     private func bind() {
+        loadingIndicator.hidesWhenStopped = true
+        
         switch task.statusId {
         case 1:
             updateTaskButton.titleLabel?.text = "Iniciar tarea "
@@ -45,15 +53,29 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
             updateTaskButton.isEnabled = false
         }
         
+        viewModel.$errorMessage
+            .receive(on: RunLoop.main)
+            .sink { [weak self] error in
+                if let message = error { self?.showToast(message: message, seconds: 3.0) }
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$isLoading
+            .receive(on: RunLoop.main)
+            .sink { [weak self] loading in
+                if loading { self?.loadingIndicator.startAnimating() }
+                else { self?.loadingIndicator.stopAnimating() }
+            }
+            .store(in: &cancellables)
+        
         
     }
     
     private func fillDetailData() {
-        print(task ?? "no se encontro task")
         taskTitleLabel.text = task.title
         descriptionTextView.text = task.description
         if let status = task.status {
-            taskBadgeLabel.text = status.name
+            setupBadgeStatus(badgeInfo: status)
         }
         if let assignedTo = task.assignedTo, let assignedBy = task.assignedBy {
             nameAssignedToLabel.text = ("\(assignedTo.name) \(assignedTo.lastName)")
@@ -63,11 +85,35 @@ class DetailTaskViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    private func setupBadgeStatus(badgeInfo: UserTaskStatus) {
+        taskbadgeContainerView.layer.cornerRadius = 6
+        taskbadgeContainerView.clipsToBounds = true
+        taskBadgeLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        taskBadgeLabel.text = badgeInfo.name
+        switch badgeInfo.code {
+        case "DONE":
+            taskbadgeContainerView.backgroundColor = .systemGreen.withAlphaComponent(0.2)
+            taskBadgeLabel.textColor = .systemGreen
+        case "PROG":
+            taskbadgeContainerView.backgroundColor = .systemBlue.withAlphaComponent(0.2)
+            taskBadgeLabel.textColor = .systemBlue
+        default:
+            taskbadgeContainerView.backgroundColor = .systemGray5
+            taskBadgeLabel.textColor = .systemGray
+        }
+    }
+ 
     @IBAction func UpdateTaskButtonAction(_ sender: Any) {
+        updateTaskButton.isEnabled = false
+
         Task { @MainActor in
+            defer { updateTaskButton.isEnabled = true }
             let update = await viewModel.updateTask(taskId: task.id, statusId: task.statusId + 1)
             if update {
                 self.showToast(message: "Tarea actualizada correctamente. ", seconds: 3.0)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.onSuccess?()
+                }
             }
         }
     }

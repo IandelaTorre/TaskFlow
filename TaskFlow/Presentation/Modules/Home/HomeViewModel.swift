@@ -16,7 +16,7 @@ class HomeViewModel {
     private let updateTaskUseCase: UpdateTaskUseCase
     
     @Published private(set) var isLoading: Bool = false
-    @Published private(set) var errorMessage: String? = ""
+    @Published private(set) var errorMessage: String? = nil
     
     @Published var user: User? = nil
     @Published var tasks: [UserTask]? = nil

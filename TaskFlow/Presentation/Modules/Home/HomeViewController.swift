@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tasksCollectionView: UICollectionView!
     @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var cardInfoView: UIView!
     
     
     
@@ -28,13 +29,12 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCardStyle(view: cardInfoView)
         setupCollectionView()
         setupRefreshControl()
         bind()
         viewModel.loadUser()
         
-
-        // Do any additional setup after loading the view.
     }
     
     private func setupCollectionView() {
@@ -51,6 +51,18 @@ class HomeViewController: UIViewController {
         
     }
     
+    func setupCardStyle(view: UIView) {
+        view.layer.cornerRadius = 16
+        view.layer.cornerCurve = .continuous
+        
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.1
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowRadius = 6
+        
+        view.layer.masksToBounds = false
+    }
+    
     private func setupRefreshControl() {
         refreshControl.tintColor = .systemBlue
         refreshControl.addTarget(self , action: #selector(didPullToRefresh), for: .valueChanged)
@@ -59,11 +71,11 @@ class HomeViewController: UIViewController {
     
     @objc private func didPullToRefresh() {
         viewModel.refreshData()
-        print("Se esta ejecutando el pull to refresh. ")
     }
     
     private func bind() {
         loadingIndicator.hidesWhenStopped = true
+        errorMessageLabel.isHidden = true
         viewModel.$user
             .receive(on: RunLoop.main)
             .sink { [weak self] user in
@@ -78,7 +90,6 @@ class HomeViewController: UIViewController {
         viewModel.$tasks
             .receive(on: RunLoop.main)
             .sink { [weak self] tasks in
-                print("Se cargaron las tareas ")
                 self?.tasksCollectionView.reloadData()
             }
             .store(in: &cancellables)
@@ -87,14 +98,15 @@ class HomeViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] loading in
                 guard let self = self else { return }
+                print("HomeViewController: \(loading)")
                 if loading {
                     if !self.refreshControl.isRefreshing {
                         self.loadingIndicator.startAnimating()
-                    } else {
-                        self.loadingIndicator.stopAnimating()
-                        if self.refreshControl.isRefreshing {
-                            self.refreshControl.endRefreshing()
-                        }
+                    }
+                } else {
+                    self.loadingIndicator.stopAnimating()
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
                     }
                 }
             }
@@ -103,7 +115,10 @@ class HomeViewController: UIViewController {
         viewModel.$errorMessage
             .receive(on: RunLoop.main)
             .sink { [weak self] error in
-                if error != nil { self?.errorMessageLabel?.text = error }
+                if let message = error {
+                    self?.errorMessageLabel.text = message
+                    self?.errorMessageLabel.isHidden = false
+                }
             }
             .store(in: &cancellables)
         
@@ -122,6 +137,12 @@ class HomeViewController: UIViewController {
         onTapAddTask?()
     }
     
+    @IBAction func CopyCodeButtonAction(_ sender: Any) {
+        if let currentUser = viewModel.user?.userCode {
+            UIPasteboard.general.string = currentUser
+            self.showToast(message: "Código copiado correctamente (\(currentUser)).", seconds: 3.0)
+        }
+    }
 }
 
 

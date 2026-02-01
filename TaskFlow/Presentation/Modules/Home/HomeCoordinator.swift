@@ -50,9 +50,9 @@ final class HomeCoordinator {
         guard let detTaskVC = storyboard.instantiateViewController(withIdentifier: "DetailTaskViewController") as? DetailTaskViewController else {
             fatalError("No se encontró DetailTaskViewController")
         }
-        /*detTaskVC.onSuccess = { [weak self] in
+        detTaskVC.onSuccess = { [weak self] in
             self?.start()
-        }*/
+        }
         detTaskVC.viewModel = diContainer.home.makeHomeViewModel()
         detTaskVC.task = userTask
         navController.pushViewController(detTaskVC, animated: true)
@@ -64,9 +64,9 @@ final class HomeCoordinator {
         guard let addTaskVC = storyboard.instantiateViewController(withIdentifier: "AddTaskViewController") as? AddTaskViewController else {
             fatalError("No se encontró AddTaskViewController")
         }
-        /*detTaskVC.onSuccess = { [weak self] in
+        addTaskVC.onSuccess = { [weak self] in
             self?.start()
-        }*/
+        }
         addTaskVC.viewModel = diContainer.home.makeHomeViewModel()
         navController.pushViewController(addTaskVC, animated: true)
     }
