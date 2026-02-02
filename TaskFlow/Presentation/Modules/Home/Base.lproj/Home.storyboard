@@ -19,6 +19,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMF-zU-sBV">
                                 <rect key="frame" x="133.66666666666666" y="188" width="125.99999999999997" height="34.333333333333343"/>
+                                <accessibility key="accessibilityConfiguration" identifier="home_btn_sign_out"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Cerrar sesión"/>
                                 <connections>
@@ -42,6 +43,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ey-r4-kgQ">
                                                         <rect key="frame" x="0.0" y="0.0" width="210.33333333333334" height="24"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="home_lbl_user_name"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -192,7 +194,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Mis tareas" id="cXP-BL-oqk">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Tap-0H-2VE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" changesSelectionAsPrimaryAction="YES" id="Tap-0H-2VE">
+                            <attributedString key="userComments">
+                                <fragment content="home_btn_add_task"/>
+                            </attributedString>
                             <connections>
                                 <action selector="AddTaskButtonAction:" destination="S3W-P8-LPz" id="ayE-9t-f86"/>
                             </connections>
@@ -221,6 +226,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crear tarea" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfK-Lq-YfW">
                                 <rect key="frame" x="16" y="126.00000000000001" width="361" height="40.666666666666671"/>
+                                <accessibility key="accessibilityConfiguration" identifier="addt_lbl_title"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -236,17 +242,19 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa el código de usuario" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sc0-0e-2vg">
                                         <rect key="frame" x="0.0" y="34.333333333333343" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="addt_tf_assign_to"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Uhn-Fd-bu4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CQo-EL-ZBi">
                                         <rect key="frame" x="0.0" y="86.333333333333343" width="361" height="34.333333333333343"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZ9-zh-dkv">
                                                 <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="34.333333333333336"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="addt_btn_assign_to_me"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Asignar a mi"/>
                                                 <connections>
@@ -282,6 +290,7 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g. Diseñar pantalla" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DZm-ZI-eNS">
                                         <rect key="frame" x="0.0" y="62.666666666666686" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="addt_tf_task_title"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Nn2-pA-Px2"/>
                                         </constraints>
@@ -300,6 +309,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4rj-bx-x22">
                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="addt_tv_task_description"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="mUq-ej-s3l"/>
                                                 </constraints>
@@ -320,6 +330,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBc-G0-bTk">
                                 <rect key="frame" x="16" y="727" width="361" height="49"/>
+                                <accessibility key="accessibilityConfiguration" identifier="addt_btn_submit"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fBc-G0-bTk" secondAttribute="height" multiplier="361:49" id="A9V-6W-nDd"/>
                                 </constraints>
