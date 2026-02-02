@@ -1,0 +1,108 @@
+
+/* Class = "UINavigationItem"; title = "Añadir tarea"; ObjectID = "3G3-xS-Ke1"; */
+"3G3-xS-Ke1.title" = "Añadir tarea";
+
+/* Class = "UILabel"; text = "Asignar a"; ObjectID = "7ao-9h-E5M"; */
+"7ao-9h-E5M.text" = "Asignar a";
+
+/* Class = "UILabel"; text = "Your name"; ObjectID = "7ey-r4-kgQ"; */
+"7ey-r4-kgQ.text" = "Your name";
+
+/* Class = "UILabel"; text = "ASIGNADO A"; ObjectID = "96r-vG-7AE"; */
+"96r-vG-7AE.text" = "ASIGNADO A";
+
+/* Class = "UILabel"; text = "Detalles de tarea"; ObjectID = "9JT-p4-ZQQ"; */
+"9JT-p4-ZQQ.text" = "Detalles de tarea";
+
+/* Class = "UILabel"; text = "Nombre del asignado"; ObjectID = "D1x-RH-LSR"; */
+"D1x-RH-LSR.text" = "Nombre del asignado";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "D6d-td-STo"; */
+"D6d-td-STo.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UITextField"; placeholder = "e.g. Diseñar pantalla"; ObjectID = "DZm-ZI-eNS"; */
+"DZm-ZI-eNS.placeholder" = "e.g. Diseñar pantalla";
+
+/* Class = "UILabel"; text = "ID: JDO-6E43"; ObjectID = "Fj7-SZ-Glb"; */
+"Fj7-SZ-Glb.text" = "ID: JDO-6E43";
+
+/* Class = "UILabel"; text = "Completado"; ObjectID = "GHj-BO-6E4"; */
+"GHj-BO-6E4.text" = "Completado";
+
+/* Class = "UILabel"; text = "Diseñar la nueva landing page."; ObjectID = "Hoy-cs-oWP"; */
+"Hoy-cs-oWP.text" = "Diseñar la nueva landing page.";
+
+/* Class = "UILabel"; text = "ErrorLabel"; ObjectID = "Lu7-kd-Le6"; */
+"Lu7-kd-Le6.text" = "ErrorLabel";
+
+/* Class = "UILabel"; text = "Nombre del que asigna"; ObjectID = "MkW-Xm-nVx"; */
+"MkW-Xm-nVx.text" = "Nombre del que asigna";
+
+/* Class = "UILabel"; text = "Crear tarea"; ObjectID = "OfK-Lq-YfW"; */
+"OfK-Lq-YfW.text" = "Crear tarea";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Qaf-JZ-7XO"; */
+"Qaf-JZ-7XO.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Título *"; ObjectID = "UK5-40-vWs"; */
+"UK5-40-vWs.text" = "Título *";
+
+/* Class = "UILabel"; text = "Completado"; ObjectID = "Ww5-PH-vBL"; */
+"Ww5-PH-vBL.text" = "Completado";
+
+/* Class = "UILabel"; text = "Descripción"; ObjectID = "ZMx-gz-Pi5"; */
+"ZMx-gz-Pi5.text" = "Descripción";
+
+/* Class = "UILabel"; text = "DESCRIPCIÓN"; ObjectID = "b3h-TN-bVZ"; */
+"b3h-TN-bVZ.text" = "DESCRIPCIÓN";
+
+/* Class = "UINavigationItem"; title = "Mis tareas"; ObjectID = "cXP-BL-oqk"; */
+"cXP-BL-oqk.title" = "Mis tareas";
+
+/* Class = "UIButton"; configuration.title = "Cerrar sesión"; ObjectID = "dMF-zU-sBV"; */
+"dMF-zU-sBV.configuration.title" = "Cerrar sesión";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dMF-zU-sBV"; */
+"dMF-zU-sBV.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Elegir de la lista"; ObjectID = "dVT-W0-DGM"; */
+"dVT-W0-DGM.configuration.title" = "Elegir de la lista";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dVT-W0-DGM"; */
+"dVT-W0-DGM.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Asignar a mi"; ObjectID = "dZ9-zh-dkv"; */
+"dZ9-zh-dkv.configuration.title" = "Asignar a mi";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dZ9-zh-dkv"; */
+"dZ9-zh-dkv.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Crear tarea"; ObjectID = "fBc-G0-bTk"; */
+"fBc-G0-bTk.configuration.title" = "Crear tarea";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fBc-G0-bTk"; */
+"fBc-G0-bTk.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Marcar como completada"; ObjectID = "gaQ-9h-VCA"; */
+"gaQ-9h-VCA.configuration.title" = "Marcar como completada";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gaQ-9h-VCA"; */
+"gaQ-9h-VCA.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Titulo de la tarea"; ObjectID = "h2K-yt-oHq"; */
+"h2K-yt-oHq.text" = "Titulo de la tarea";
+
+/* Class = "UILabel"; text = "ID: JDO-6E43"; ObjectID = "iG4-8t-ioY"; */
+"iG4-8t-ioY.text" = "ID: JDO-6E43";
+
+/* Class = "UILabel"; text = "Your code: IAN-TRE64"; ObjectID = "mPA-cR-XUI"; */
+"mPA-cR-XUI.text" = "Your code: IAN-TRE64";
+
+/* Class = "UILabel"; text = "Estado de la tarea"; ObjectID = "plO-zy-ngJ"; */
+"plO-zy-ngJ.text" = "Estado de la tarea";
+
+/* Class = "UITextField"; placeholder = "Ingresa el código de usuario"; ObjectID = "sc0-0e-2vg"; */
+"sc0-0e-2vg.placeholder" = "Ingresa el código de usuario";
+
+/* Class = "UILabel"; text = "ASIGNADO POR"; ObjectID = "zDO-eT-Kqn"; */
+"zDO-eT-Kqn.text" = "ASIGNADO POR";
