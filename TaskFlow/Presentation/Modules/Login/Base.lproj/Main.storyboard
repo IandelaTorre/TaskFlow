@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Iniciar sesión-->
+        <!--Log in-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="TaskFlow" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,13 +37,14 @@
                                     <constraint firstItem="uoG-yZ-cTy" firstAttribute="centerY" secondItem="Qjo-Wk-MDR" secondAttribute="centerY" id="C62-Nf-dAJ"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenido de vuelta!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsX-6Y-X59">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsX-6Y-X59">
                                 <rect key="frame" x="16" y="280" width="361" height="24"/>
+                                <accessibility key="accessibilityConfiguration" identifier="login_lbl_welcome"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresa tus credenciales para iniciar." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxQ-MG-DWp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your details to log in. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxQ-MG-DWp">
                                 <rect key="frame" x="16" y="312" width="361" height="21.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -52,28 +53,30 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="BCS-4V-NAi">
                                 <rect key="frame" x="16" y="353.66666666666669" width="361" height="176.66666666666669"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correo electrónico" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7N-J2-XXF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7N-J2-XXF">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu correo electrónico" textAlignment="natural" minimumFontSize="17" sizingRule="oversize" translatesAutoresizingMaskIntoConstraints="NO" id="GHl-mI-L95">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email" textAlignment="natural" minimumFontSize="17" sizingRule="oversize" translatesAutoresizingMaskIntoConstraints="NO" id="GHl-mI-L95">
                                         <rect key="frame" x="0.0" y="36.333333333333314" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="login_tf_email"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="4lR-kr-VNi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contraseña" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-jd-0RH">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-jd-0RH">
                                         <rect key="frame" x="0.0" y="96.333333333333314" width="361" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu contraseña" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RLk-Og-j0e">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter you password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RLk-Og-j0e">
                                         <rect key="frame" x="0.0" y="132.66666666666663" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="login_tf_password"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="dqI-MB-nqL"/>
                                         </constraints>
@@ -84,11 +87,12 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nF-c8-aWW">
                                 <rect key="frame" x="16" y="582.66666666666663" width="361" height="50"/>
+                                <accessibility key="accessibilityConfiguration" identifier="login_btn_submit"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2nF-c8-aWW" secondAttribute="height" multiplier="361:50" id="37U-wA-9tG"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Iniciar sesión"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Log in"/>
                                 <connections>
                                     <action selector="LoginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ysf-YA-2mV"/>
                                 </connections>
@@ -97,9 +101,10 @@
                                 <rect key="frame" x="16" y="648.66666666666663" width="361" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imM-KS-KKa">
-                                        <rect key="frame" x="0.0" y="0.0" width="112.66666666666667" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="32"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="login_btn_signup_nav"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Crear cuenta">
+                                        <buttonConfiguration key="configuration" style="plain" title="Create account">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -107,9 +112,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CM8-A3-Qi8">
-                                        <rect key="frame" x="185.66666666666663" y="0.0" width="175.33333333333337" height="32"/>
+                                        <rect key="frame" x="203.33333333333337" y="0.0" width="157.66666666666663" height="32"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="login_btn_rp_nav"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Recuperar contraseña">
+                                        <buttonConfiguration key="configuration" style="plain" title="Recovery password">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -155,7 +161,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BCS-4V-NAi" secondAttribute="trailing" constant="16" id="qwq-GE-too"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Iniciar sesión" id="2gZ-oa-T6o"/>
+                    <navigationItem key="navigationItem" title="Log in" id="2gZ-oa-T6o"/>
                     <connections>
                         <outlet property="errorMessageLabel" destination="47f-t3-WP3" id="38a-Tb-xLC"/>
                         <outlet property="loadingIndicator" destination="9GC-DX-SNc" id="ApZ-gm-s41"/>
@@ -185,8 +191,9 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu nombre completo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gON-dl-pvg">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu nombre completo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gON-dl-pvg" propertyAccessControl="all">
                                         <rect key="frame" x="0.0" y="36.333333333333343" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="signup_tf_names"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Gel-vO-LZg"/>
                                         </constraints>
@@ -199,8 +206,9 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu nombre completo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SmQ-jT-eNP">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="lastNameSignup" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tus apellidos" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SmQ-jT-eNP">
                                         <rect key="frame" x="0.0" y="132.66666666666666" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="signup_tf_last_name"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="sqH-ha-P9f"/>
                                         </constraints>
@@ -213,13 +221,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2zB-z1-vfo">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="emailSignup" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2zB-z1-vfo">
                                         <rect key="frame" x="0.0" y="229" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="signup_tf_email"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="du7-Jg-ixA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contraseña" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlb-D4-hF8">
                                         <rect key="frame" x="0.0" y="289" width="361" height="20.333333333333314"/>
@@ -227,8 +236,9 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RnR-9k-hEa">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="passwordSignup" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RnR-9k-hEa">
                                         <rect key="frame" x="0.0" y="325.33333333333331" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="signup_tf_password"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="kJA-Px-nly"/>
                                         </constraints>
@@ -237,8 +247,9 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHs-QU-rz3">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="createAccountButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHs-QU-rz3">
                                 <rect key="frame" x="16" y="539.66666666666663" width="361" height="50"/>
+                                <accessibility key="accessibilityConfiguration" identifier="signup_btn_submit"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XHs-QU-rz3" secondAttribute="height" multiplier="361:50" id="1Om-FX-9Cm"/>
                                 </constraints>
@@ -349,13 +360,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-Ci-pXC">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="emailRecoveryCode" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-Ci-pXC">
                                         <rect key="frame" x="0.0" y="36.333333333333343" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="rp_tf_email"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="wAh-29-MeM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Código de recuperación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYA-lM-l9w">
                                         <rect key="frame" x="0.0" y="96.333333333333314" width="361" height="20.333333333333329"/>
@@ -365,6 +377,7 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Código de 6 dígitos" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vp5-9x-sd4">
                                         <rect key="frame" x="0.0" y="132.66666666666669" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="rp_tf_code"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="U93-7D-cjT"/>
                                         </constraints>
@@ -379,6 +392,7 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingresa tu nueva contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i6n-94-MA8">
                                         <rect key="frame" x="0.0" y="229" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="rp_tf_password"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="IBN-Yy-6BQ"/>
                                         </constraints>
@@ -393,6 +407,7 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirma tu nueva contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-p0-MVK">
                                         <rect key="frame" x="0.0" y="325.33333333333337" width="361" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="rp_tf_re_password"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="7BX-b1-rl5"/>
                                         </constraints>
@@ -403,6 +418,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqQ-Li-SSm">
                                 <rect key="frame" x="16" y="616.66666666666663" width="361" height="50"/>
+                                <accessibility key="accessibilityConfiguration" identifier="rp_btn_submit"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cqQ-Li-SSm" secondAttribute="height" multiplier="361:50" id="e25-08-J9k"/>
                                     <constraint firstAttribute="width" secondItem="cqQ-Li-SSm" secondAttribute="height" multiplier="361:50" id="fU6-xU-ej0"/>

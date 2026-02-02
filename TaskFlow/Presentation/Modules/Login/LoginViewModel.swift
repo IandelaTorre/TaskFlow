@@ -22,6 +22,7 @@ class LoginViewModel {
     @Published var enabledRecoveryPassButton: Bool? = nil
     
     private var cancellables = Set<AnyCancellable>()
+    private let validator: InputValidator = LoginInputValidator()
     
     init(loginUseCase: LoginUseCase, signupUseCase: SignupUseCase, recoveryPassUseCase: RecoveryPasswordUseCase) {
         self.loginUseCase = loginUseCase
@@ -55,6 +56,11 @@ class LoginViewModel {
         isLoading = true
         defer { isLoading = false }
         
+        if let error = validator.validateAll([(.email, username), (.password, password)])?.message {
+            errorMessage = error
+            return false
+        }
+        
         do {
             _ = try await loginUseCase.execute(username: username, password: password, time: 1)
             return true
@@ -68,6 +74,11 @@ class LoginViewModel {
         isLoading = true
         defer { isLoading = false }
         
+        if let error = validator.validateAll([(.name, name), (.lastName, lastName), (.email, email), (.password, password)])?.message {
+            errorMessage = error
+            return false
+        }
+        
         do {
             _ = try await signupUseCase.execute(name: name, lastName: lastName, email: email, password: password)
             return true
@@ -80,6 +91,12 @@ class LoginViewModel {
     func recoveryPassword(email: String, recoveryCode: String, newPassword: String) async -> Bool {
         isLoading = true
         defer { isLoading = false }
+        
+        if let error = validator.validateAll([(.email, email), (.password, newPassword)])?.message {
+            errorMessage = error
+            return false
+        }
+        
         do {
             _ = try await recoveryPassUseCase.execute(email: email, recoveryCode: recoveryCode, newPassword: newPassword)
             return true

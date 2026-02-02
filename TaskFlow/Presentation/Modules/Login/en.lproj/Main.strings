@@ -1,0 +1,132 @@
+
+/* Class = "UILabel"; text = "Regresar al inicio de sesión"; ObjectID = "2WE-4I-1tK"; */
+"2WE-4I-1tK.text" = "Back to Login";
+
+/* Class = "UINavigationItem"; title = "Iniciar sesión"; ObjectID = "2gZ-oa-T6o"; */
+"2gZ-oa-T6o.title" = "Log in";
+
+/* Class = "UIButton"; configuration.title = "Iniciar sesión"; ObjectID = "2nF-c8-aWW"; */
+"2nF-c8-aWW.configuration.title" = "Log in";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "2nF-c8-aWW"; */
+"2nF-c8-aWW.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Ingresa tu correo electrónico"; ObjectID = "2zB-z1-vfo"; */
+"2zB-z1-vfo.placeholder" = "Enter your email";
+
+/* Class = "UILabel"; text = "ErrorLabel"; ObjectID = "47f-t3-WP3"; */
+"47f-t3-WP3.text" = "ErrorLabel";
+
+/* Class = "UILabel"; text = "Confirma nueva contraseña"; ObjectID = "4ig-xR-JMU"; */
+"4ig-xR-JMU.text" = "Confirm new password";
+
+/* Class = "UIButton"; configuration.title = "Recuperar contraseña"; ObjectID = "CM8-A3-Qi8"; */
+"CM8-A3-Qi8.configuration.title" = "Recover password";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "CM8-A3-Qi8"; */
+"CM8-A3-Qi8.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Ingresa tu correo electrónico"; ObjectID = "GHl-mI-L95"; */
+"GHl-mI-L95.placeholder" = "Enter your email";
+
+/* Class = "UILabel"; text = "Código de recuperación"; ObjectID = "IYA-lM-l9w"; */
+"IYA-lM-l9w.text" = "Recovery code";
+
+/* Class = "UITextField"; placeholder = "Ingresa tu correo electrónico"; ObjectID = "Mw7-Ci-pXC"; */
+"Mw7-Ci-pXC.placeholder" = "Enter your email";
+
+/* Class = "UILabel"; text = "Nombre(s)"; ObjectID = "Mxe-xJ-u5D"; */
+"Mxe-xJ-u5D.text" = "Name(s)";
+
+/* Class = "UILabel"; text = "Correo electrónico"; ObjectID = "O7N-J2-XXF"; */
+"O7N-J2-XXF.text" = "Email";
+
+/* Class = "UIViewController"; title = "Crear cuenta"; ObjectID = "P5v-rc-8TM"; */
+"P5v-rc-8TM.title" = "Create account";
+
+/* Class = "UILabel"; text = "ErrorLabel"; ObjectID = "Q3w-6E-1hF"; */
+"Q3w-6E-1hF.text" = "ErrorLabel";
+
+/* Class = "UITextField"; placeholder = "Ingresa tu contraseña"; ObjectID = "RLk-Og-j0e"; */
+"RLk-Og-j0e.placeholder" = "Enter your password";
+
+/* Class = "UITextField"; placeholder = "Ingresa tu contraseña"; ObjectID = "RnR-9k-hEa"; */
+"RnR-9k-hEa.placeholder" = "Enter your password";
+
+/* Class = "UITextField"; placeholder = "Ingresa tu nombre completo"; ObjectID = "SmQ-jT-eNP"; */
+"SmQ-jT-eNP.placeholder" = "Enter your full name";
+
+/* Class = "UILabel"; text = "Ingresa tus credenciales para iniciar."; ObjectID = "UxQ-MG-DWp"; */
+"UxQ-MG-DWp.text" = "Please enter your details to log in.";
+
+/* Class = "UITextField"; placeholder = "Código de 6 dígitos"; ObjectID = "Vp5-9x-sd4"; */
+"Vp5-9x-sd4.placeholder" = "6-digit code";
+
+/* Class = "UIViewController"; title = "Enter recovery code"; ObjectID = "WhN-xh-bLT"; */
+"WhN-xh-bLT.title" = "Enter recovery code";
+
+/* Class = "UILabel"; text = "Correo electrónico"; ObjectID = "WnO-9p-4dc"; */
+"WnO-9p-4dc.text" = "Email";
+
+/* Class = "UIButton"; configuration.title = "Crear cuenta"; ObjectID = "XHs-QU-rz3"; */
+"XHs-QU-rz3.configuration.title" = "Sign up";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XHs-QU-rz3"; */
+"XHs-QU-rz3.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "ErrorLabel"; ObjectID = "YxM-5y-GSy"; */
+"YxM-5y-GSy.text" = "ErrorLabel";
+
+/* Class = "UINavigationItem"; title = "Crear cuenta"; ObjectID = "cKv-yL-r1z"; */
+"cKv-yL-r1z.title" = "Create account";
+
+/* Class = "UIButton"; configuration.title = "Cambiar contraseña"; ObjectID = "cqQ-Li-SSm"; */
+"cqQ-Li-SSm.configuration.title" = "Change password";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cqQ-Li-SSm"; */
+"cqQ-Li-SSm.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Bienvenido de vuelta!"; ObjectID = "dsX-6Y-X59"; */
+"dsX-6Y-X59.text" = "Welcome back!";
+
+/* Class = "UILabel"; text = "Correo electrónico"; ObjectID = "eAZ-My-Apf"; */
+"eAZ-My-Apf.text" = "Email";
+
+/* Class = "UINavigationItem"; title = "Ingresa código"; ObjectID = "fGk-UQ-h1v"; */
+"fGk-UQ-h1v.title" = "Enter code";
+
+/* Class = "UITextField"; placeholder = "Ingresa tu nombre completo"; ObjectID = "gON-dl-pvg"; */
+"gON-dl-pvg.placeholder" = "Enter your full name";
+
+/* Class = "UILabel"; text = "Nueva contraseña"; ObjectID = "gaF-B3-FAX"; */
+"gaF-B3-FAX.text" = "New password";
+
+/* Class = "UITextField"; placeholder = "Ingresa tu nueva contraseña"; ObjectID = "i6n-94-MA8"; */
+"i6n-94-MA8.placeholder" = "Enter your new password";
+
+/* Class = "UIButton"; configuration.title = "Crear cuenta"; ObjectID = "imM-KS-KKa"; */
+"imM-KS-KKa.configuration.title" = "Sign up";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "imM-KS-KKa"; */
+"imM-KS-KKa.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "TaskFlow"; ObjectID = "oun-GD-8ob"; */
+"oun-GD-8ob.text" = "TaskFlow";
+
+/* Class = "UILabel"; text = "Revisa tu correo electrónico para buscar el código de recuperación, también ingresa la nueva contraseña para tu cuenta. "; ObjectID = "qIy-nU-zle"; */
+"qIy-nU-zle.text" = "Check your email for the recovery code and set a new password.";
+
+/* Class = "UILabel"; text = "Un código de usuario será generado para ti automáticamente. Puedes encontrarlo mas adelante en la pantalla inicial."; ObjectID = "qsc-gd-D7J"; */
+"qsc-gd-D7J.text" = "A unique user code will be generated for you automatically. You can find it later on your Home screen.";
+
+/* Class = "UITextField"; placeholder = "Confirma tu nueva contraseña"; ObjectID = "rAy-p0-MVK"; */
+"rAy-p0-MVK.placeholder" = "Confirm new password";
+
+/* Class = "UILabel"; text = "Apellidos"; ObjectID = "rbJ-sW-3o6"; */
+"rbJ-sW-3o6.text" = "Last name";
+
+/* Class = "UILabel"; text = "Contraseña"; ObjectID = "x6e-jd-0RH"; */
+"x6e-jd-0RH.text" = "Password";
+
+/* Class = "UILabel"; text = "Contraseña"; ObjectID = "zlb-D4-hF8"; */
+"zlb-D4-hF8.text" = "Password";
