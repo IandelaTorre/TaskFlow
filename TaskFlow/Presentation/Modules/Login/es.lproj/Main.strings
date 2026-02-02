@@ -63,7 +63,7 @@
 "Vp5-9x-sd4.placeholder" = "Código de 6 dígitos";
 
 /* Class = "UIViewController"; title = "Enter recovery code"; ObjectID = "WhN-xh-bLT"; */
-"WhN-xh-bLT.title" = "Enter recovery code";
+"WhN-xh-bLT.title" = "Ingresa código de recuperación";
 
 /* Class = "UILabel"; text = "Correo electrónico"; ObjectID = "WnO-9p-4dc"; */
 "WnO-9p-4dc.text" = "Correo electrónico";

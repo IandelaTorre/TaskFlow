@@ -41,6 +41,9 @@ class HomeViewController: UIViewController {
         tasksCollectionView.delegate = self
         tasksCollectionView.dataSource = self
         
+        tasksCollectionView.layer.cornerRadius = 16
+        tasksCollectionView.layer.cornerCurve = .continuous
+        
         
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
         config.showsSeparators = true
